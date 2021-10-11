@@ -37,7 +37,5 @@ class Home extends BaseController
         echo view("templates/header", $data);
         echo view('user/usersListView', $data);
         echo view("templates/footer");
-
-        //return view('welcome_message');
     }
 }
