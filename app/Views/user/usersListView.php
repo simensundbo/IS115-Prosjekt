@@ -11,12 +11,11 @@
         ?>
         <tr>
             <th><?php echo $row['id']; ?></th>
-            <th><?php echo $row['bruker_navn']; ?></th>
-            <th><?php echo $row['bruker_passord']; ?></th>
+            <th><?php echo $row['username']; ?></th>
+            <th><?php echo $row['password']; ?></th>
         </tr>
         <?php
         }
  ?>
     </table>
 </main>
-

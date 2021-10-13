@@ -15,6 +15,7 @@ class UserController extends BaseController
 
     public function login()
     {
+        
         $username = $_POST["uname"];
         $pwd = $_POST["pwd"];
         $model = new \App\Models\UserModel();

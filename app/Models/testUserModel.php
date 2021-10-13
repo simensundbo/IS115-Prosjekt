@@ -5,10 +5,13 @@ use CodeIgniter\Model;
 
 class testUserModel extends Model
 {
-    protected $table = 'brukere';
+    protected $table = 'users';
     protected $primaryKey = 'id';
 
-    protected $allowedFields = ['bruker_navn', 'bruker_passord'];
+    protected $allowedFields = [
+        'username', 
+        'password'
+    ];
 
 
 }

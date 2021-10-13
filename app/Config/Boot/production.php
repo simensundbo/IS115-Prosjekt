@@ -6,8 +6,10 @@
  |--------------------------------------------------------------------------
  | Don't show ANY in production environments. Instead, let the system catch
  | it and display a generic error message.
+
+    endret display_errors til 1. Denne kan man bytte mellom 1 og 0.
  */
-ini_set('display_errors', '0');
+ini_set('display_errors', '1');
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
 
 /*

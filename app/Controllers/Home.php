@@ -17,6 +17,7 @@ class Home extends BaseController
         $result = $query->getResult('array');
         $db->close();
         $data['users'] = $result;
+        $data['title'] = "Brukere";
 
 
         echo view("templates/header", $data);
@@ -32,6 +33,7 @@ class Home extends BaseController
         $result = $model->findAll();
 
         $data['users'] = $result;
+        $data['title'] = "Brukere";
 
 
         echo view("templates/header", $data);
