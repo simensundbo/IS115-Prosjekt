@@ -1,15 +1,19 @@
-
+<?php if(isset($validation)):?>
+                <div class="alert alert-warning">
+                   <?= $validation->listErrors() ?>
+                </div>
+<?php endif;?>
 <main class="w-50">
-    <form action=" <?= base_url('UserController/login') ?>" method="post">
+    <form action=" <?= base_url('LoginController/login') ?>" method="post">
         <h1 class="display-3 mb-3">Logg på</h1>
 
         <div class="mb-2 form-floating">
-            <input type="text" class="form-control" placeholder="User123" name="uname" required oninvalid="this.setCustomValidity('Fyll inn brukernavn')" oninput="this.setCustomValidity('')"/>
+            <input type="text" class="form-control" placeholder="User123" name="username" required oninvalid="this.setCustomValidity('Fyll inn brukernavn')" oninput="this.setCustomValidity('')"/>
             <span class="invalide-feedback"> <?php echo isset($user_err) ? $user_err : null; ?> </span>
             <label>Brukernavn</label>
         </div>
         <div class="mb-2 form-floating">
-            <input type="password" class="form-control" placeholder="Password" name="pwd" required oninvalid="this.setCustomValidity('Fyll inn et passord')" oninput="this.setCustomValidity('')">
+            <input type="password" class="form-control" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Fyll inn et passord')" oninput="this.setCustomValidity('')">
             <span class="invalide-feedback"> <?php echo isset($pass_err) ? $pass_err : null; ?> </span>
             <label>Passord</label>
         </div>

@@ -15,16 +15,32 @@ class SignupController extends BaseController{
 
     public function register(){
         helper(['form']);
+        echo "her";
 
-
-        $rules = [
-            'username'          => 'required|min_length[2]|max_length[50]',
+        $validation = $this->validate([
+            'username'          => 'required|min_length[2]|max_length[50]|is_unique[users.username]',
             'password'          => 'required|min_length[4]|max_length[50]',
             'confirmpassword'   => 'matches[password]'
-        ];
-
-
-        if($this->validate($rules)){
+        ],
+        [ //error messages
+            "username" => [
+                "required" => "Brukernavn må oppgis",
+                "is_unique" => "Brukernavnet er allerede i bruk. Brukernavnet må være unikt", 
+                "min_length" => "Brukernavnet må minst være {param} karakterer langt", 
+                "max_length" => "Brukernavnet kan ikke være lengre enn {param} karakterer"
+            ],
+            "password" => [
+                "required" => "Passord må oppgis",
+                "min_length" => "Passordet må minst være {param} karakterer langt", 
+                "max_length" => "Passordet kan ikke være lengre enn {param} karakterer"
+            ],
+            "confirmpassword" => [
+                "matches" => "Passordene må være like"
+            ]
+        ]
+        ); 
+        
+        if($validation){
             $model = new \App\Models\testUserModel();
 
             $data = [
@@ -34,7 +50,7 @@ class SignupController extends BaseController{
 
             $model->save($data);
 
-            return redirect()->to('/users');
+            return redirect()->to('home/users');
         }else{
             $data['validation'] = $this->validator;
             echo view("templates/header");

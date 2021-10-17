@@ -9,11 +9,15 @@ class Home extends BaseController
         return view('welcome_message');
     }
 
+    public function loggedin(){
+        return view('home/index');
+    }
+
     public function users()
     {
     
         $db = \Config\Database::connect();
-        $query = $db->query("SELECT * from brukere");
+        $query = $db->query("SELECT * from users");
         $result = $query->getResult('array');
         $db->close();
         $data['users'] = $result;
