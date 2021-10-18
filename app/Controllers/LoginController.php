@@ -49,8 +49,7 @@ class LoginController extends BaseController{
                     $_SESSION["id"] = $data["id"];
                     $_SESSION["user"] = $data["username"];
                     
-                    //echo $data["username"];
-                    return redirect()->to('/home/loggedin');
+                    return redirect()->to('AuthController/index');
 
                 }else{
                     $data['validation'] = $this->validator;

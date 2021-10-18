@@ -6,16 +6,14 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('home/index');
-    }
-
-    public function loggedin(){
-        return view('auth/index');
+        echo view("templates/header");
+        echo view('home/index');
+        echo view("templates/footer");
     }
 
     public function users()
     {
-    
+
         $db = \Config\Database::connect();
         $query = $db->query("SELECT * from users");
         $result = $query->getResult('array');
@@ -27,7 +25,6 @@ class Home extends BaseController
         echo view("templates/header", $data);
         echo view('user/usersListView', $data);
         echo view("templates/footer");
-
     }
 
     public function test()
@@ -35,6 +32,7 @@ class Home extends BaseController
         $model = new \App\Models\testUserModel();
 
         $result = $model->findAll();
+
 
         $data['users'] = $result;
         $data['title'] = "Brukere";
