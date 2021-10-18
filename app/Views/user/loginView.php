@@ -1,9 +1,10 @@
+
+<main class="w-50">
 <?php if(isset($validation)):?>
                 <div class="alert alert-warning">
                    <?= $validation->listErrors() ?>
                 </div>
 <?php endif;?>
-<main class="w-50">
     <form action=" <?= base_url('LoginController/login') ?>" method="post">
         <h1 class="display-3 mb-3">Logg på</h1>
 

@@ -15,7 +15,6 @@ class SignupController extends BaseController{
 
     public function register(){
         helper(['form']);
-        echo "her";
 
         $validation = $this->validate([
             'username'          => 'required|min_length[2]|max_length[50]|is_unique[users.username]',
@@ -49,6 +48,8 @@ class SignupController extends BaseController{
             ];
 
             $model->save($data);
+
+        
 
             return redirect()->to('home/users');
         }else{

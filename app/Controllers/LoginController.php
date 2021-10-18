@@ -39,15 +39,12 @@ class LoginController extends BaseController{
             $password = $_POST["password"];
 
             $data = $model->where('username', $username)->first();
-            echo "her";
 
             if($data){
                 $hashPwd = $data["password"];
-                echo "her1";
 
                 if(password_verify($password, $hashPwd)){
                     session_start();
-                    echo "her2";
                     $_SESSION["loggedon"] = true;
                     $_SESSION["id"] = $data["id"];
                     $_SESSION["user"] = $data["username"];

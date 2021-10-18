@@ -11,12 +11,12 @@
 
         <div class="mb-2 form-floating">
             <input type="text" class="form-control" placeholder="User123" name="username" required oninvalid="this.setCustomValidity('Fyll inn brukernavn')" oninput="this.setCustomValidity('')"/>
-            <span class="invalide-feedback"> <?php echo isset($user_err) ? $user_err : null; ?> </span>
+            <span class="invalide-feedback">  </span>
             <label>Brukernavn</label>
         </div>
         <div class="mb-2 form-floating">
             <input type="password" class="form-control" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Fyll inn et passord')" oninput="this.setCustomValidity('')">
-            <span class="invalide-feedback"> <?php echo isset($pass_err) ? $pass_err : null; ?> </span>
+            <span class="invalide-feedback">  </span>
             <label>Passord</label>
         </div>
         <div class="mb-2 form-floating">
