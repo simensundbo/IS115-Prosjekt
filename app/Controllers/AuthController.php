@@ -11,4 +11,16 @@ class AuthController extends BaseController
         echo view('auth/index');
         echo view("templates/footer");
     }
+
+    public function viewAllMembers(){
+        
+
+
+
+        // echo view("templates/header");
+        // echo view('auth/index');
+        // echo view("templates/footer");
+    }
+
+
 }

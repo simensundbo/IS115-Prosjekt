@@ -50,7 +50,6 @@ class SignupController extends BaseController{
             $model->save($data);
 
         
-
             return redirect()->to('home/users');
         }else{
             $data['validation'] = $this->validator;
