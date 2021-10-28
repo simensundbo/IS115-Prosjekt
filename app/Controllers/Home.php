@@ -29,7 +29,7 @@ class Home extends BaseController
 
     public function test()
     {
-        $model = new \App\Models\testUserModel();
+        $model = new \App\Models\testModel();
 
         $result = $model->findAll();
 

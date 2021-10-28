@@ -8,8 +8,8 @@
                 <h3 class="float-md-start mb-0">NEO</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="<?= base_url('LoginController') ?>">Login</a>
-                    <a class="nav-link" href="">Home</a>
+                    <a class="nav-link" href="<?= base_url('/login') ?>">Login</a>
+                    <a class="nav-link" href="<?= base_url('/mail') ?>">Send oss en mail!</a>
                 </nav>
             </div>
         </header>

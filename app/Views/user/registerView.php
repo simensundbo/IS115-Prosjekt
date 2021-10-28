@@ -15,6 +15,11 @@
             <label>Brukernavn</label>
         </div>
         <div class="mb-2 form-floating">
+            <input type="text" class="form-control" placeholder="1234567" name="EmployeeNumber" required oninvalid="this.setCustomValidity('Fyll inn ditt ansatt nummer')" oninput="this.setCustomValidity('')"/>
+            <span class="invalide-feedback">  </span>
+            <label>Ansatt nummer</label>
+        </div>
+        <div class="mb-2 form-floating">
             <input type="password" class="form-control" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Fyll inn et passord')" oninput="this.setCustomValidity('')">
             <span class="invalide-feedback">  </span>
             <label>Passord</label>
@@ -32,5 +37,5 @@
         <button class="btn btn-lg btn-secondary" type="reset">Reset</button>
     </form>
     <p>Har du bruker?</p>
-    <a href="<?= base_url('UserController/index') ?>">Logg på her</a>
+    <a href="<?= base_url('/login') ?>">Logg på her</a>
 </main>

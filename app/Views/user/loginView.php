@@ -5,7 +5,7 @@
                    <?= $validation->listErrors() ?>
                 </div>
 <?php endif;?>
-    <form action=" <?= base_url('LoginController/login') ?>" method="post">
+    <form action=" <?= base_url('/UserController/login') ?>" method="post">
         <h1 class="display-3 mb-3">Logg på</h1>
 
         <div class="mb-2 form-floating">
@@ -22,5 +22,5 @@
         <button class="btn btn-lg btn-secondary" type="reset">Reset</button>
     </form>
     <p>Har du ikke bruker?</p>
-    <a href="<?= base_url('UserController/registerView') ?>">Registrer deg her</a>
+    <a href="<?= base_url('/register') ?>">Registrer deg her</a>
 </main>

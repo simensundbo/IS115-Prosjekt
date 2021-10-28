@@ -30,10 +30,9 @@ class LoginController extends BaseController{
         ]
         ); 
 
-        $model = new \App\Models\testUserModel();
 
         if($validation){
-            $model = new \App\Models\testUserModel();
+            $model = new \App\Models\UserModel();
 
             $username = $_POST["username"];
             $password = $_POST["password"];

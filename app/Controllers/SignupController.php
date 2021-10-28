@@ -40,7 +40,7 @@ class SignupController extends BaseController{
         ); 
         
         if($validation){
-            $model = new \App\Models\testUserModel();
+            $model = new \App\Models\UserModel();
 
             $data = [
                 'username' => $_POST['username'],
