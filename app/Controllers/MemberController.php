@@ -62,4 +62,20 @@ class MemberController extends BaseController
             echo view("templates/footer");
         }
     }
+
+    function listMembers(){
+
+        $model = new \App\Models\memberModel();
+
+        $result = $model->findAll();
+
+        $data['title'] = "Alle medlemmer";
+        $data['members'] = $result;
+
+        //print_r($data);
+        echo view("templates/header", $data);
+        echo view("member/listMemberView", $data);
+        echo view("templates/footer");
+
+    }
 }
