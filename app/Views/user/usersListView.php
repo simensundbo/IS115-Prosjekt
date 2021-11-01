@@ -1,4 +1,3 @@
-
 <main>
     <table>
         <tr>
@@ -7,15 +6,13 @@
             <th>Passord</th>
         </tr>
         <?php
-        foreach ($users as $row){
+        foreach ($users as $row) {
         ?>
-        <tr>
-            <th><?php echo $row['id']; ?></th>
-            <th><?php echo $row['username']; ?></th>
-            <th><?php echo $row['password']; ?></th>
-        </tr>
-        <?php
-        }
- ?>
+            <tr>
+                <th><?php echo $row['id']; ?></th>
+                <th><?php echo $row['username']; ?></th>
+                <th><?php echo $row['password']; ?></th>
+            </tr>
+        <?php } ?>
     </table>
 </main>

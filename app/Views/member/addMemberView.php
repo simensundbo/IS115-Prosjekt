@@ -15,6 +15,10 @@
             <?= $validation->listErrors() ?>
         </div>
     <?php }; ?>
+
+
+    <a href="<?= base_url("/dashboard") ?>">Tilbake til dashbordet</a>
+
     <form action="<?= base_url("MemberController/addMember") ?>" method="post">
         <table>
             <h3>Registrer ett nytt medlem</h3>
