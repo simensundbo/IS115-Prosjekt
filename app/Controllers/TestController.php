@@ -15,7 +15,6 @@ class UserController extends BaseController
 
     public function login()
     {
-        
         $username = $_POST["uname"];
         $pwd = $_POST["pwd"];
         $model = new \App\Models\UserModel();
@@ -41,7 +40,6 @@ class UserController extends BaseController
         $pwdRepeat = $_POST["pwdRepeat"];
 
         $model = new \App\Models\UserModel();
-
         $result = $model->register($username, $pwd , $pwdRepeat);
 
         if($result == true){
@@ -49,6 +47,7 @@ class UserController extends BaseController
             echo view("user/loginView");
             echo view("templates/footer");
         }else{
+            
             $data['error'] = $result;
             echo view("templates/header");
             echo view("user/registerView", $data);
