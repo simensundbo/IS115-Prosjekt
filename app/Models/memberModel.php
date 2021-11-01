@@ -15,7 +15,7 @@ class memberModel extends Model{
         'post_code',
         'post_area',
         'email',
-        'mobilenr',
+        'mobile_nr',
         'aktivity_id',
         'interest_id',
         'contingent_status',

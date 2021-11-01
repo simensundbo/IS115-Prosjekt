@@ -56,8 +56,8 @@
             </tr>
             <tr>
                 <th>Mobilnr*:</th>
-                <td><input type="number" name="mobilenr" value="<?php if (isset($_POST["mobilenr"])) {
-                                                                    echo $_POST["mobilenr"];
+                <td><input type="number" name="mobile_nr" value="<?php if (isset($_POST["mobile_nr"])) {
+                                                                    echo $_POST["mobile_nr"];
                                                                 } ?>" required></td>
             </tr>
             <tr>
