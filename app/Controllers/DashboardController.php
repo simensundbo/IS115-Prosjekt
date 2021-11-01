@@ -26,4 +26,9 @@ class DashboardController extends BaseController
         echo view("templates/footer");
     }
 
+    public function logout(){
+        
+
+    }
+
 }

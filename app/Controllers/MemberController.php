@@ -64,7 +64,7 @@ class MemberController extends BaseController
                 'street_name' => $_POST['address'],
                 'post_code' => $_POST['post_code'],
                 'post_area' => $_POST['post_area'],
-                'mobile_nr' => $_POST['mobile_nr'],//bug 
+                'mobile_nr' => $_POST['mobile_nr'],
                 'dob' => $_POST['dob'],
                 'gender' => $_POST['gender']
             ];
@@ -87,6 +87,7 @@ class MemberController extends BaseController
         $model = new \App\Models\memberModel();
 
         $result = $model->findAll();
+        //$result = $model->query("select * from members")->getResult("array");
 
         $data['title'] = "Alle medlemmer";
         $data['members'] = $result;

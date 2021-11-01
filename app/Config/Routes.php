@@ -38,6 +38,7 @@ $routes->get("/register", "UserController::RegisterView");
 $routes->get("/dashboard", "DashboardController::index");
 $routes->get("/addmember", "DashboardController::addMemberView");
 $routes->get("/listMembers", "MemberController::listMembers");
+$routes->get("/logout", "DashboardController::logout");
 
 /*
  * --------------------------------------------------------------------
