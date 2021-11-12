@@ -1,6 +1,4 @@
 <main>
-
-
     <table>
         <tr>
             <th>Medlem ID</th>
@@ -40,7 +38,7 @@
                 <td><?= $row['contingent_status'] ?></td>
                 <td><?= $row['dob'] ?></td>
                 <td><?= $row['gender'] ?></td>
-                <td><a href="<?php echo site_url('/update/'.$row['id']); ?>">Oppdater</a></td>
+                <td><a href="<?php echo site_url('/updateview/'.$row['id']); ?>">Oppdater</a></td>
                 <td><a href="<?php echo site_url('/delete/'.$row['id']); ?>">Slett</a></td>
             </tr>
 

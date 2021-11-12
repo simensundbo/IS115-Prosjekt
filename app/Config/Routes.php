@@ -39,8 +39,9 @@ $routes->get("/dashboard", "DashboardController::index");
 $routes->get("/addmember", "DashboardController::addMemberView");
 $routes->get("/listMembers", "MemberController::listMembers");
 $routes->get("/logout", "DashboardController::logout");
-$routes->get("/update", "MemberController::update");
-$routes->get("/delete", "MemberController::delete");
+$routes->match(['get', 'post'], "/updateview/(:num)", "MemberController::updateView/$1");
+$routes->match(['get', 'delete'], "/delete/(:num)", "MemberController::delete/$1");
+$routes->post("/update/(:num)", "MemberController::update/$1");
 
 /*
  * --------------------------------------------------------------------
