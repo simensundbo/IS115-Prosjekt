@@ -15,7 +15,7 @@
             <?= $validation->listErrors() ?>
         </div>
     <?php }; ?>
-    <form action="<?= base_url("ActivityController/addActivity") ?>" method="post">
+    <form action="<?= base_url("/addActivity") ?>" method="post">
         <table>
             <h3>Registrer en ny aktivitet</h3>
             <tr>

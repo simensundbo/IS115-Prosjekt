@@ -1,6 +1,6 @@
 <main>
 
-<a href="<?= base_url('/addActivity')  ?>"> Legg til aktivitet</a>
+<a href="<?= base_url('/addActivityView')  ?>"> Legg til aktivitet</a>
 
 
     <table>
