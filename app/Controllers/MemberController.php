@@ -72,8 +72,6 @@ class MemberController extends BaseController
             $model->save($data);
 
             return redirect()->to('dashboard');
-
-
         } else {
             $data['validation'] = $this->validator;
             echo view("templates/header");
@@ -82,7 +80,8 @@ class MemberController extends BaseController
         }
     }
 
-    function listMembers(){
+    function listMembers()
+    {
 
         $model = new \App\Models\memberModel();
 
@@ -92,10 +91,16 @@ class MemberController extends BaseController
         $data['title'] = "Alle medlemmer";
         $data['members'] = $result;
 
-        //print_r($data);
         echo view("templates/header", $data);
         echo view("member/listMemberView", $data);
         echo view("templates/footer");
+    }
 
+    function update(){
+
+    }
+
+    function delete(){
+        
     }
 }

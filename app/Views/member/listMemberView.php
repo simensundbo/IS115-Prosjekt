@@ -16,6 +16,8 @@
             <th>Kontingentstatus</th>
             <th>Fødselsdato</th>
             <th>Kjønn</th>
+            <th>Oppdater</th>
+            <th>Slett</th>
         </tr>
 
         <?php
@@ -38,6 +40,8 @@
                 <td><?= $row['contingent_status'] ?></td>
                 <td><?= $row['dob'] ?></td>
                 <td><?= $row['gender'] ?></td>
+                <td><a href="<?php echo site_url('/update/'.$row['id']); ?>">Oppdater</a></td>
+                <td><a href="<?php echo site_url('/delete/'.$row['id']); ?>">Slett</a></td>
             </tr>
 
         <?php
