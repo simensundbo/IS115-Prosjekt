@@ -17,9 +17,7 @@ class UserModel extends Model{
         } else {
             $db = \Config\Database::connect();
             $sql = "select id, bruker_navn, bruker_passord from brukere where bruker_navn = :bruker_navn: ";
-            $result = $db->query($sql, [
-                'bruker_navn' => $uname
-            ]);
+            $result = $db->query($sql, ['bruker_navn' => $uname]);
 
             if ($result->getNumRows() == 1) {
 

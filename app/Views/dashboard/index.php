@@ -7,5 +7,6 @@
     <a href="<?php  ?>"> Din profil</a>
     <a href="<?= base_url('/addmember') ?>"> Legg til ett medlem i klubben</a>
     <a href="<?= base_url('/listMembers')  ?>"> Se alle medlemmer</a>
-    <a href="<?= base_url('/')  ?>"> Logg ut</a>
+    <a href="<?= base_url('/listActivities')  ?>"> Se alle aktiviteter</a>
+
 </main>
