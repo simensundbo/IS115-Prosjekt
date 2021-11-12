@@ -5,6 +5,13 @@ namespace App\Controllers;
 class MemberController extends BaseController
 {
 
+    function addMemberView()
+    {
+        echo view("templates/header");
+        echo view('member/addMemberView');
+        echo view("templates/footer");
+    }
+
     function addMember()
     {
         helper(['form']);
