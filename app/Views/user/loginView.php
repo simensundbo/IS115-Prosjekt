@@ -1,11 +1,11 @@
 
-<main class="w-50">
+<main class="position-absolute top-50 start-50 translate-middle">
 <?php if(isset($validation)):?>
                 <div class="alert alert-warning">
                    <?= $validation->listErrors() ?>
                 </div>
 <?php endif;?>
-    <form action=" <?= base_url('/UserController/login') ?>" method="post">
+    <form action=" <?= base_url('/UserController/login') ?>" method="post" >
         <h1 class="display-3 mb-3">Logg på</h1>
 
         <div class="mb-2 form-floating">

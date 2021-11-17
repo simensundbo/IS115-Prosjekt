@@ -40,7 +40,7 @@ $routes->get("/addmemberView", "MemberController::addMemberView");
 $routes->post("/addmember", "MemberController::addMember");
 $routes->get("/listMembers", "MemberController::listMembers");
 $routes->get("/logout", "DashboardController::logout");
-$routes->match(['get', 'post'], "/updateview/(:num)", "MemberController::updateView/$1");
+$routes->get("/updateview/(:num)", "MemberController::updateView/$1");
 $routes->match(['get', 'delete'], "/delete/(:num)", "MemberController::delete/$1");
 $routes->post("/update/(:num)", "MemberController::update/$1");
 $routes->get("/listActivities", "ActivityController::listActivities");

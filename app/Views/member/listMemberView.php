@@ -1,16 +1,12 @@
 <main>
-    <table>
+    <a href="<?=site_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dahsboard</a>
+    <table class="table table-striped">
         <tr>
-            <th>Medlem ID</th>
+            <th>Profile</th>
             <th>Fornavn</th>
             <th>Etternavn</th>
-            <th>Gatenavn</th>
-            <th>Postnummer</th>
-            <th>Poststed</th>
             <th>E-post</th>
             <th>Mobilnummer</th>
-            <th>Aktiviter</th>
-            <th>Interesser</th>
             <th>Kontingentstatus</th>
             <th>Fødselsdato</th>
             <th>Kjønn</th>
@@ -25,21 +21,16 @@
         ?>
 
             <tr>
-                <td><?= $row['id'] ?></td>
+                <td><a href="<?= site_url('/userprofile/'.$row['id']); ?>" class="btn btn-primary">Se profil</a></td>
                 <td><?= $row['fname'] ?></td>
                 <td><?= $row['lname'] ?></td>
-                <td><?= $row['street_name'] ?></td>
-                <td><?= $row['post_code'] ?></td>
-                <td><?= $row['post_area'] ?></td>
                 <td><?= $row['email'] ?></td>
                 <td><?= $row['mobile_nr'] ?></td>
-                <td><?= $row['aktivity_id'] ?></td>
-                <td><?= $row['interest_id'] ?></td>
                 <td><?= $row['contingent_status'] ?></td>
                 <td><?= $row['dob'] ?></td>
                 <td><?= $row['gender'] ?></td>
-                <td><a href="<?php echo site_url('/updateview/'.$row['id']); ?>">Oppdater</a></td>
-                <td><a href="<?php echo site_url('/delete/'.$row['id']); ?>">Slett</a></td>
+                <td><a href="<?=site_url('/updateview/'.$row['id']); ?>" class="btn btn-primary">Oppdater</a></td>
+                <td><a href="<?= site_url('/delete/'.$row['id']); ?>" class="btn btn-primary">Slett</a></td>
             </tr>
 
         <?php

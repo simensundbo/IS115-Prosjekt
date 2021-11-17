@@ -2,9 +2,9 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 18. Okt, 2021 14:49 PM
--- Tjener-versjon: 10.4.20-MariaDB
+-- Host: localhost
+-- Generation Time: Nov 12, 2021 at 12:29 PM
+-- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,18 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `activities`
+-- Table structure for table `activities`
 --
 
 CREATE TABLE `activities` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `startdato` varchar(255) DEFAULT 'NULL',
+  `sluttdato` varchar(255) DEFAULT 'NULL',
+  `ansvarlig` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `activities`
+--
+
+INSERT INTO `activities` (`id`, `name`, `startdato`, `sluttdato`, `ansvarlig`) VALUES
+(1, 'Volleyball', NULL, NULL, NULL),
+(2, 'Fotball', '2021-11-12', '2021-11-19', 1);
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `interests`
+-- Table structure for table `interests`
 --
 
 CREATE TABLE `interests` (
@@ -46,7 +57,7 @@ CREATE TABLE `interests` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `members`
+-- Table structure for table `members`
 --
 
 CREATE TABLE `members` (
@@ -57,7 +68,7 @@ CREATE TABLE `members` (
   `post_code` int(4) DEFAULT NULL,
   `post_area` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `mobile_nr` int(8) DEFAULT NULL,
+  `mobile_nr` int(11) DEFAULT NULL,
   `aktivity_id` int(11) DEFAULT NULL,
   `interest_id` int(11) DEFAULT NULL,
   `contingent_status` varchar(255) DEFAULT NULL,
@@ -67,18 +78,70 @@ CREATE TABLE `members` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dataark for tabell `members`
+-- Dumping data for table `members`
 --
 
 INSERT INTO `members` (`id`, `fname`, `lname`, `street_name`, `post_code`, `post_area`, `email`, `mobile_nr`, `aktivity_id`, `interest_id`, `contingent_status`, `user_id`, `dob`, `gender`) VALUES
 (1, 'Rikke', 'Solvang', 'St. Olavs vei 7', 4631, 'Kristiansand', 'rikke_solvang@hotmail.com', 94197823, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'Simen', 'Sundbø', 'St. Olavs vei 15', 4631, 'Kristiansand', 'simens@uia.no', 12345678, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Rikke', 'Solvang', 'St Olavs vei', 4631, 'Krs', 'rikke_solvang@hotmail.com', 94197823, NULL, NULL, NULL, NULL, '1971', 'Kvinne');
+(4, 'Rikke', 'Solvang', 'St Olavs vei', 4631, 'Krs', 'rikke_solvang@hotmail.com', 94197823, NULL, NULL, NULL, NULL, '1971', 'Kvinne'),
+(5, 'test', 'test', 'test', 1234, 'test', NULL, NULL, NULL, NULL, NULL, NULL, '2021-11-21', 'Dame'),
+(6, 'Rikke', 'Solvang', '37 THE RIDGEWAY', 4631, 'krs', 'rikke_solvang@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2021-11-01', 'Øsnker ikke å oppgi'),
+(7, 'Rikke', 'Solvang', '37 THE RIDGEWAY', 1234, 'krs', 'rikke_solvang@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2021-11-01', 'Dame'),
+(8, 'Rikke', 'Solvang', '37 THE RIDGEWAY', 1234, 'krs', 'rikke_solvang@hotmail.com', NULL, NULL, NULL, NULL, NULL, '2021-11-01', 'Øsnker ikke å oppgi'),
+(9, 'simen', 'sundbø', 'St. Olavs gate 13', 4631, 'krs', 'sim123@live.no', 99421023, NULL, NULL, NULL, NULL, '1999-10-12', 'Mann');
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `users`
+-- Table structure for table `mem_activity`
+--
+
+CREATE TABLE `mem_activity` (
+  `activity_id` int(11) DEFAULT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mem_interests`
+--
+
+CREATE TABLE `mem_interests` (
+  `interest_id` int(11) DEFAULT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mem_role`
+--
+
+CREATE TABLE `mem_role` (
+  `role_id` int(11) DEFAULT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `role` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -88,7 +151,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dataark for tabell `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
@@ -104,7 +167,8 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 -- Indexes for table `activities`
 --
 ALTER TABLE `activities`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ansvarlig` (`ansvarlig`);
 
 --
 -- Indexes for table `interests`
@@ -122,6 +186,36 @@ ALTER TABLE `members`
   ADD KEY `bruker_id` (`user_id`);
 
 --
+-- Indexes for table `mem_activity`
+--
+ALTER TABLE `mem_activity`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `activity_id` (`activity_id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
+-- Indexes for table `mem_interests`
+--
+ALTER TABLE `mem_interests`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `interest_id` (`interest_id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
+-- Indexes for table `mem_role`
+--
+ALTER TABLE `mem_role`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -135,7 +229,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `interests`
@@ -147,7 +241,31 @@ ALTER TABLE `interests`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `mem_activity`
+--
+ALTER TABLE `mem_activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mem_interests`
+--
+ALTER TABLE `mem_interests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mem_role`
+--
+ALTER TABLE `mem_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -156,16 +274,43 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Begrensninger for dumpede tabeller
+-- Constraints for dumped tables
 --
 
 --
--- Begrensninger for tabell `members`
+-- Constraints for table `activities`
+--
+ALTER TABLE `activities`
+  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`ansvarlig`) REFERENCES `members` (`id`);
+
+--
+-- Constraints for table `members`
 --
 ALTER TABLE `members`
   ADD CONSTRAINT `members_ibfk_1` FOREIGN KEY (`aktivity_id`) REFERENCES `activities` (`id`),
   ADD CONSTRAINT `members_ibfk_2` FOREIGN KEY (`interest_id`) REFERENCES `interests` (`id`),
   ADD CONSTRAINT `members_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `mem_activity`
+--
+ALTER TABLE `mem_activity`
+  ADD CONSTRAINT `mem_activity_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activities` (`id`),
+  ADD CONSTRAINT `mem_activity_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
+
+--
+-- Constraints for table `mem_interests`
+--
+ALTER TABLE `mem_interests`
+  ADD CONSTRAINT `mem_interests_ibfk_1` FOREIGN KEY (`interest_id`) REFERENCES `interests` (`id`),
+  ADD CONSTRAINT `mem_interests_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
+
+--
+-- Constraints for table `mem_role`
+--
+ALTER TABLE `mem_role`
+  ADD CONSTRAINT `mem_role_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
+  ADD CONSTRAINT `mem_role_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `members` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

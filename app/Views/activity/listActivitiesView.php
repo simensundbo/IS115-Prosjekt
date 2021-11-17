@@ -1,5 +1,5 @@
 <main>
-
+<a href="<?= base_url('/dashboard'); ?>">Tilbake til dashbordet</a>
 <a href="<?= base_url('/addActivityView')  ?>"> Legg til aktivitet</a>
 
 

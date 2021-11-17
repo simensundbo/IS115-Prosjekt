@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
+<main>
+    <a href="<?= base_url('/listActivities'); ?>">Tilbake</a>
     <?php if (isset($validation)) { ?>
         <div class="alert alert-warning">
             <?= $validation->listErrors() ?>
@@ -21,8 +11,8 @@
             <tr>
                 <th>Aktivitet*:</th>
                 <td><input type="text" name="activity" value="<?php if (isset($_POST["activity"])) {
-                                                                echo $_POST["activity"];
-                                                            } ?> " required></td>
+                                                                    echo $_POST["activity"];
+                                                                } ?> " required></td>
             </tr>
             <tr>
                 <th>Startdato*:</th>
@@ -33,18 +23,16 @@
             <tr>
                 <th>Sluttdato*:</th>
                 <td><input type="date" name="enddate" value="<?php if (isset($_POST["enddate"])) {
-                                                                echo $_POST["enddate"];
-                                                            } ?>" required></td>
+                                                                    echo $_POST["enddate"];
+                                                                } ?>" required></td>
             </tr>
             <tr>
                 <th>Ansvarlig (Medlems ID)*:</th>
                 <td><input type="text" name="member" value="<?php if (isset($_POST["member"])) {
-                                                                    echo $_POST["member"];
-                                                                } ?>" required></td>
+                                                                echo $_POST["member"];
+                                                            } ?>" required></td>
             </tr>
         </table>
         <input type="submit" name="submit" value="Opprett aktivitet">
     </form>
-</body>
-
-</html>
+</main>
