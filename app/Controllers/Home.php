@@ -37,9 +37,8 @@ class Home extends BaseController
         $data['users'] = $result;
         $data['title'] = "Brukere";
 
-
-        echo view("templates/header", $data);
+        // echo view("templates/header", $data);
         echo view('user/usersListView', $data);
-        echo view("templates/footer");
+        // echo view("templates/footer");
     }
 }

@@ -16,5 +16,10 @@
         <a href="<?= base_url('/')  ?>" class="btn btn-primary">Søk etter medlemmer</a>
         <a href="<?= base_url('/listActivities') ?>" class="btn btn-primary"> Se alle aktiviteter</a>
     </div>
+    <button onclick="test()">Test</button>
+
+    <div id="users">
+        
+    </div>
 
 </main>

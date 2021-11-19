@@ -21,7 +21,7 @@
         ?>
 
             <tr>
-                <td><a href="<?= site_url('/userprofile/'.$row['id']); ?>" class="btn btn-primary">Se profil</a></td>
+                <td><a href="<?= site_url('/memberprofile/'.$row['id']); ?>" class="btn btn-primary">Se profil</a></td>
                 <td><?= $row['fname'] ?></td>
                 <td><?= $row['lname'] ?></td>
                 <td><?= $row['email'] ?></td>
