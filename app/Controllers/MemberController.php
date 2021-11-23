@@ -102,18 +102,30 @@ class MemberController extends BaseController
         echo view("templates/footer");
     }
 
-    function updateView($id){
+    function updateView($id)
+    {
         $model = new \App\Models\memberModel();
         $data['id'] = $id;
         $data['member'] = $model->find($id);
-        
+
         echo view("templates/header", $data);
         echo view("member/updateMemberView", $data);
         echo view("templates/footer");
     }
 
-    function update($id){
+    function memberProfile($id)
+    {
+        $model = new \App\Models\memberModel();
+        $data['member'] = $model->find($id);
 
+        echo view("templates/header", $data);
+        echo view("member/memberProfileView", $data);
+        echo view("templates/footer");
+    }
+
+    function update($id)
+    {
+        
         helper(['form']);
 
         $validation = $this->validate(
@@ -160,7 +172,7 @@ class MemberController extends BaseController
             ]
         );
 
-        if($validation){
+        if ($validation) {
             $model = new \App\Models\memberModel();
 
             $data = [
@@ -175,13 +187,16 @@ class MemberController extends BaseController
                 'gender' => $_POST['gender']
             ];
 
-            if($model->update($id, $data)){
-                return redirect()->to('/listMembers');
+            if ($model->update($id, $data)) {
+                return redirect()->to('/memberProfile/'.$id);
             }
+        }else{
+            echo ("her");
         }
     }
 
-    function delete($id){
+    function delete($id)
+    {
         $model = new \App\Models\memberModel();
         $data['member'] = $model->where('id', $id)->delete($id);
 

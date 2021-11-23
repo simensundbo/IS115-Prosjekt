@@ -1,5 +1,5 @@
-<main>
-    <a href="<?=site_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dahsboard</a>
+<main class="container">
+    <a href="<?=site_url('/dashboard'); ?>" class="mb-2 mt-2 btn btn-primary">Tilbake til dahsboard</a>
     <table class="table table-striped">
         <tr>
             <th>Profile</th>
@@ -10,8 +10,6 @@
             <th>Kontingentstatus</th>
             <th>Fødselsdato</th>
             <th>Kjønn</th>
-            <th>Oppdater</th>
-            <th>Slett</th>
         </tr>
 
         <?php
@@ -21,7 +19,7 @@
         ?>
 
             <tr>
-                <td><a href="<?= site_url('/memberprofile/'.$row['id']); ?>" class="btn btn-primary">Se profil</a></td>
+                <td><a href="<?= base_url('/memberProfile/'.$row['id']); ?>" class="btn btn-primary">Se profil</a></td>
                 <td><?= $row['fname'] ?></td>
                 <td><?= $row['lname'] ?></td>
                 <td><?= $row['email'] ?></td>
@@ -29,8 +27,6 @@
                 <td><?= $row['contingent_status'] ?></td>
                 <td><?= $row['dob'] ?></td>
                 <td><?= $row['gender'] ?></td>
-                <td><a href="<?=site_url('/updateview/'.$row['id']); ?>" class="btn btn-primary">Oppdater</a></td>
-                <td><a href="<?= site_url('/delete/'.$row['id']); ?>" class="btn btn-primary">Slett</a></td>
             </tr>
 
         <?php

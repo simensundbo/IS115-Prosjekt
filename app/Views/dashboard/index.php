@@ -1,25 +1,37 @@
-<main class="position-relative">
+<main class="container">
 
     <h1>Velkommen til admin siden</h1>
-    <div class="">
-        <p class="position-absolute top-50 start-50 translate-middle">
-            <?php
-            session_start();
-            echo 'Velkommen ' .  ucfirst($_SESSION['user'])  ?>
-        </p>
+    <div class="position-relative">
+        <?php
+        session_start();
+        ?>
+        <p class=""> <?=  'Velkommen ' . ucfirst($_SESSION['user']) ?> </p>
     </div>
 
-    <div class="position-relative">
-        <a href="<?php  ?>" class="btn btn-primary"> Din profil</a>
-        <a href="<?= base_url('/addmemberView') ?>" class="btn btn-primary"> Legg til ett medlem i klubben</a>
-        <a href="<?= base_url('/listMembers')  ?>" class="btn btn-primary"> Se alle medlemmer</a>
-        <a href="<?= base_url('/')  ?>" class="btn btn-primary">Søk etter medlemmer</a>
-        <a href="<?= base_url('/listActivities') ?>" class="btn btn-primary"> Se alle aktiviteter</a>
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <a href="<?php  ?>" class="m-1 btn btn-primary"> Din profil</a>
+            </div>
+            <div class="">
+                <a href="<?= base_url('/addmemberView') ?>" class="m-1 btn btn-primary"> Legg til ett medlem i klubben</a>
+            </div>
+            <div class="">
+                <a href="<?= base_url('/listMembers')  ?>" class="m-1 btn btn-primary"> Se alle medlemmer</a>
+            </div>
+            <div class="">
+                <a href="<?= base_url('/')  ?>" class="m-1 btn btn-primary">Søk etter medlemmer</a>
+            </div>
+            <div class="">
+                <a href="<?= base_url('/listActivities') ?>" class="m-1 btn btn-primary"> Se alle aktiviteter</a>
+            </div>
+
+            <!-- <button class="btn btn-primary" onclick="TimeInterval()">Test</button> -->
+        </div>
     </div>
-    <button onclick="test()">Test</button>
 
     <div id="users">
-        
+
     </div>
 
 </main>
