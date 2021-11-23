@@ -25,7 +25,8 @@
                                 <div class="col-md-12"><label class="labels">Post nummer</label><input name="post_code" type="text" class="form-control" placeholder="Post nummer" value="<?= $member['post_code'] ?>"></div>
                                 <div class="col-md-12"><label class="labels">Fødselsdato</label><input name="dob" type="date" class="form-control" placeholder="Fødselsdato" value="<?= $member['dob'] ?>"></div>
                                 <div class="col-md-12"><label class="labels">Email</label><input name="email" type="text" class="form-control" placeholder="Email" value="<?= $member['email'] ?>"></div>
-                                <div class="col-md-12"><label class="labels">Kjønn</label><input name="gender" name="email" type="text" class="form-control" placeholder="Email" value="<?= $member['gender'] ?>"></div>
+                                <div class="col-md-12"><label class="labels">Kjønn</label><input name="gender" name="email" type="text" class="form-control" placeholder="kjønn" value="<?= $member['gender'] ?>"></div>
+                                <div class="col-md-12"><label class="labels">Kontigent status</label><input name="gender" name="contingent_status" type="text" class="form-control" placeholder="kontigent status" value="<?= $member['contingent_status'] == 1 ? 'Aktiv': 'Ikke aktiv' ?>"></div>
                             </div>
                         </fieldset>
                     </form>

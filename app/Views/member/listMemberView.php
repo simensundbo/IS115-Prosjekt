@@ -10,6 +10,7 @@
             <th>Kontingentstatus</th>
             <th>Fødselsdato</th>
             <th>Kjønn</th>
+            <th>Medlem siden</th>
         </tr>
 
         <?php
@@ -24,9 +25,10 @@
                 <td><?= $row['lname'] ?></td>
                 <td><?= $row['email'] ?></td>
                 <td><?= $row['mobile_nr'] ?></td>
-                <td><?= $row['contingent_status'] ?></td>
+                <td><?= $row['contingent_status'] == 1 ? 'Aktiv' : 'Ikke aktiv'  ?></td>
                 <td><?= $row['dob'] ?></td>
                 <td><?= $row['gender'] ?></td>
+                <td><?= $row['member_since'] ?></td>
             </tr>
 
         <?php

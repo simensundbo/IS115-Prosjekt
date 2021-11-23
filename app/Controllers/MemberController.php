@@ -129,15 +129,16 @@ class MemberController extends BaseController
 
         $validation = $this->validate(
             [
-                'epost'          => 'required|min_length[10]|max_length[50]|valid_email',
-                'fname'          => 'required|min_length[4]|max_length[50]',
-                'lname'          => 'required|min_length[4]|max_length[50]',
-                'address'        => 'required|min_length[4]|max_length[50]',
-                'post_code'      => 'required|min_length[4]|max_length[4]',
-                'post_area'      => 'required',
-                'mobile_nr'       => 'required|min_length[8]|max_length[8]',
-                'dob'            => 'required',
-                'gender'         => 'required'
+                'epost'             => 'required|min_length[10]|max_length[50]|valid_email',
+                'fname'             => 'required|min_length[4]|max_length[50]',
+                'lname'             => 'required|min_length[4]|max_length[50]',
+                'address'           => 'required|min_length[4]|max_length[50]',
+                'post_code'         => 'required|min_length[4]|max_length[4]',
+                'post_area'         => 'required',
+                'mobile_nr'         => 'required|min_length[8]|max_length[8]',
+                'dob'               => 'required',
+                'gender'            => 'required',
+                'contingent_status' => 'required'
             ],
             [ //error messages
                 "epost" => [
@@ -183,7 +184,8 @@ class MemberController extends BaseController
                 'post_area' => $_POST['post_area'],
                 'mobile_nr' => $_POST['mobile_nr'],
                 'dob' => $_POST['dob'],
-                'gender' => $_POST['gender']
+                'gender' => $_POST['gender'],
+                'contingent_status' => $_POST['contingent_status']
             ];
 
             if ($model->update($id, $data)) {

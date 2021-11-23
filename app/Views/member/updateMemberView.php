@@ -49,6 +49,19 @@
                                     </optgroup>
                                 </select>
                             </div>
+                            <div class="col-md-12">
+                                <label class="labels">Kontigent status</label>
+                                <select name="contingent_status" class="form-select">
+                                    <optgroup label="Nå værende">
+                                        <option value="<?= $member['contingent_status'] ?>"><?= $member['contingent_status'] == 1 ? 'Aktiv': 'Ikke aktiv' ?></option>
+                                    </optgroup>
+                                    <optgroup label="Kontigent status">
+                                        <option value="0">Ikke aktiv</option>
+                                        <option value="1">Aktiv</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
                         </div>
                         <div class="mt-5 text-center">
                             <button class="btn btn-primary profile-button" type="submit">Oppdater profilen</button>
