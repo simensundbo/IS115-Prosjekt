@@ -105,7 +105,6 @@ class MemberController extends BaseController
     function updateView($id)
     {
         $model = new \App\Models\memberModel();
-        $data['id'] = $id;
         $data['member'] = $model->find($id);
 
         echo view("templates/header", $data);
@@ -125,7 +124,7 @@ class MemberController extends BaseController
 
     function update($id)
     {
-        
+
         helper(['form']);
 
         $validation = $this->validate(
@@ -188,9 +187,9 @@ class MemberController extends BaseController
             ];
 
             if ($model->update($id, $data)) {
-                return redirect()->to('/memberProfile/'.$id);
+                return redirect()->to('/memberProfile/' . $id);
             }
-        }else{
+        } else {
             echo ("her");
         }
     }
@@ -201,5 +200,67 @@ class MemberController extends BaseController
         $data['member'] = $model->where('id', $id)->delete($id);
 
         return redirect()->to('/listMembers');
+    }
+
+    function uploadProfileImage($id)
+    {
+        if ($_FILES["img"]["error"] == 0) {
+
+            $img = $_FILES["img"];
+
+            $imgName = $_FILES["img"]["name"];
+            $imgTempName = $_FILES["img"]["tmp_name"];
+            $imgSize = $_FILES["img"]["size"];
+            $imgType = $_FILES["img"]["type"];
+            $imgError = $_FILES["img"]["error"];
+
+            $imgExt = explode("/", $imgType);
+            $imgActualExt = strtolower(end($imgExt));
+
+            $allowd = ["png", "jpg", "jpeg"];
+
+            if (in_array($imgActualExt, $allowd)) {
+
+                if ($imgSize < 2000000) {
+
+                    $fileName = $id . "." . $imgActualExt;
+
+                    $fileDestination = "assets/img/" . $fileName;
+
+                    move_uploaded_file($imgTempName, $fileDestination);
+                    return redirect()->to('/memberProfile/'.$id);
+
+                } else {//error handling
+
+                    $model = new \App\Models\memberModel();
+                    $data['member'] = $model->find($id);
+                    
+                    $data['error'] = "Bilde er for stort";
+
+                    echo view("templates/header", $data);
+                    echo view("member/updateMemberView", $data);
+                    echo view("templates/footer");
+                }
+            } else {//error handling
+                $model = new \App\Models\memberModel();
+                $data['member'] = $model->find($id);
+                
+                $data['error'] = "Ikke tillat bilde format";
+
+                echo view("templates/header", $data);
+                echo view("member/updateMemberView", $data);
+                echo view("templates/footer");
+            }
+        } else {//error handling
+
+            $model = new \App\Models\memberModel();
+            $data['member'] = $model->find($id);
+            
+            $data['error'] = "En feil oppsto under opplastningen av bilde";
+
+            echo view("templates/header", $data);
+            echo view("member/updateMemberView", $data);
+            echo view("templates/footer");
+        }
     }
 }

@@ -3,6 +3,7 @@
     <h1>Velkommen til admin siden</h1>
     <div class="position-relative">
         <?php
+        
         session_start();
         ?>
         <p class=""> <?=  'Velkommen ' . ucfirst($_SESSION['user']) ?> </p>

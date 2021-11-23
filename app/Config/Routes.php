@@ -44,6 +44,7 @@ $routes->get("/updateView/(:num)", "MemberController::updateView/$1");
 $routes->match(['get', 'delete'], "/deleteMember/(:num)", "MemberController::delete/$1");
 $routes->post("/updateMember/(:num)", "MemberController::update/$1");
 $routes->get("/memberProfile/(:num)", "MemberController::memberProfile/$1");
+$routes->post('/uploadImage/(:num)', "MemberController::uploadProfileImage/$1");
 
 $routes->get("/listActivities", "ActivityController::listActivities");
 $routes->get("/addActivityView", "ActivityController::addActivityView");

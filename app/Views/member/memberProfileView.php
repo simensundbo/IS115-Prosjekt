@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" height="150px" src="/assets/img/technology.png">
-                    <button class="m-2 btn btn-primary profile-button font-weight-bold">Last opp ett bilde</button>
+                    <img class="rounded-circle mt-5" width="150px" height="150px" src='<?= "/assets/img/" . $member["id"] . ".png" ?>'>
                 </div>
             </div>
             <div class="col-md-5 border-right">
