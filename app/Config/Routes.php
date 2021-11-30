@@ -33,18 +33,22 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get("/users", "Home::test");
+
 $routes->get("/login", "UserController::loginView");
 $routes->get("/register", "UserController::RegisterView");
-$routes->get("/dashboard", "DashboardController::index");
+
+$routes->get("/logout", "DashboardController::logout");
+$routes->get("/dashboard", "DashboardController::index", ['filter' => 'authGuard']);
+
 $routes->get("/addmemberView", "MemberController::addMemberView");
 $routes->post("/addmember", "MemberController::addMember");
 $routes->get("/listMembers", "MemberController::listMembers");
-$routes->get("/logout", "DashboardController::logout");
 $routes->get("/updateView/(:num)", "MemberController::updateView/$1");
 $routes->match(['get', 'delete'], "/deleteMember/(:num)", "MemberController::delete/$1");
 $routes->post("/updateMember/(:num)", "MemberController::update/$1");
 $routes->get("/memberProfile/(:num)", "MemberController::memberProfile/$1");
 $routes->post('/uploadImage/(:num)', "MemberController::uploadProfileImage/$1");
+$routes->get('/getsearchsuggestion/(:segment)', 'MemberController::getsearchSuggestion/$1');
 
 $routes->get("/listActivities", "ActivityController::listActivities");
 $routes->get("/addActivityView", "ActivityController::addActivityView");

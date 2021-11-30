@@ -1,5 +1,22 @@
 <main class="container">
-    <a href="<?=site_url('/dashboard'); ?>" class="mb-2 mt-2 btn btn-primary">Tilbake til dahsboard</a>
+
+    <div class="d-flex justify-content-between m-2 p-2">
+        <div>
+            <a href="<?= site_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dahsboard</a>
+        </div>
+
+        <form action="<?= base_url('/memberProfile'); ?>">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input onkeyup="searchSuggestion()" type="search" id="search" class="form-control" />
+                    <label class="form-label" for="form1">Søk</label>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+            </div>
+            <ul id="suggestion" class="suggestion list-group">
+            </ul>
+        </form>
+    </div>
     <table class="table table-striped">
         <tr>
             <th>Profile</th>
@@ -20,7 +37,7 @@
         ?>
 
             <tr>
-                <td><a href="<?= base_url('/memberProfile/'.$row['id']); ?>" class="btn btn-primary">Se profil</a></td>
+                <td><a href="<?= base_url('/memberProfile/' . $row['id']); ?>" class="btn btn-primary">Se profil</a></td>
                 <td><?= $row['fname'] ?></td>
                 <td><?= $row['lname'] ?></td>
                 <td><?= $row['email'] ?></td>
@@ -37,4 +54,3 @@
     </table>
 
 </main>
-

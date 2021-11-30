@@ -43,11 +43,13 @@ class UserController extends BaseController
                 $hashPwd = $data["password"];
 
                 if(password_verify($password, $hashPwd)){
-                    session_start();
-                    $_SESSION["loggedon"] = true;
-                    $_SESSION["id"] = $data["id"];
-                    $_SESSION["user"] = $data["username"];
-                    
+                    $session_data = [
+                        "loggedon" => true,
+                        "id" => $data["id"],
+                        "user" => $data["username"]
+                    ];
+                    $session = session();
+                    $session->set($session_data);
                     return redirect()->to('dashboard');
 
                 }else{

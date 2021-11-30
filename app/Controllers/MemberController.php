@@ -230,39 +230,62 @@ class MemberController extends BaseController
                     $fileDestination = "assets/img/" . $fileName;
 
                     move_uploaded_file($imgTempName, $fileDestination);
-                    return redirect()->to('/memberProfile/'.$id);
-
-                } else {//error handling
+                    return redirect()->to('/memberProfile/' . $id);
+                } else { //error handling
 
                     $model = new \App\Models\memberModel();
                     $data['member'] = $model->find($id);
-                    
+
                     $data['error'] = "Bilde er for stort";
 
                     echo view("templates/header", $data);
                     echo view("member/updateMemberView", $data);
                     echo view("templates/footer");
                 }
-            } else {//error handling
+            } else { //error handling
                 $model = new \App\Models\memberModel();
                 $data['member'] = $model->find($id);
-                
+
                 $data['error'] = "Ikke tillat bilde format";
 
                 echo view("templates/header", $data);
                 echo view("member/updateMemberView", $data);
                 echo view("templates/footer");
             }
-        } else {//error handling
+        } else { //error handling
 
             $model = new \App\Models\memberModel();
             $data['member'] = $model->find($id);
-            
+
             $data['error'] = "En feil oppsto under opplastningen av bilde";
 
             echo view("templates/header", $data);
             echo view("member/updateMemberView", $data);
             echo view("templates/footer");
         }
+    }
+
+    function getsearchSuggestion($string)
+    {
+        $model = new \App\Models\memberModel();
+        $data['member'] = $model->query("select * from members where fname like '%$string%'")->getResult('array');
+
+        $suggestions = [];
+
+        foreach($data['member'] as $value){
+            $member = [
+                'id' => $value['id'],
+                'fname' => $value['fname'],
+                'lname' => $value['lname']
+            ];
+
+
+            $suggestions[] = $member;
+        }
+
+        $suggestions = json_encode($suggestions, JSON_UNESCAPED_UNICODE);
+
+        print_r($suggestions);
+
     }
 }
