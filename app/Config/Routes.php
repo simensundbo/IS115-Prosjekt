@@ -36,8 +36,8 @@ $routes->get("/users", "Home::test");
 
 $routes->get("/login", "UserController::loginView");
 $routes->get("/register", "UserController::RegisterView");
+$routes->get("/logout", "UserController::logout");
 
-$routes->get("/logout", "DashboardController::logout");
 $routes->get("/dashboard", "DashboardController::index", ['filter' => 'authGuard']);
 
 $routes->get("/addmemberView", "MemberController::addMemberView");

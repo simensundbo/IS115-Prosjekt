@@ -84,7 +84,8 @@ class UserController extends BaseController
         $validation = $this->validate([
             'username'          => 'required|min_length[2]|max_length[50]|is_unique[users.username]',
             'password'          => 'required|min_length[4]|max_length[50]',
-            'confirmpassword'   => 'matches[password]'
+            'confirmpassword'   => 'matches[password]',
+            'EmployeeNumber'    =>  'required'
         ],
         [ //error messages
             "username" => [
@@ -114,8 +115,7 @@ class UserController extends BaseController
 
             $model->save($data);
 
-        
-            return redirect()->to('home/users');
+            return redirect()->to('/login');
         }else{
             $data['validation'] = $this->validator;
             echo view("templates/header");
@@ -125,7 +125,12 @@ class UserController extends BaseController
 
     }
 
+    public function logout(){
+        $session = session();
+        $session->destroy();
 
+        return redirect()->to('/');
 
+    }
 
 }

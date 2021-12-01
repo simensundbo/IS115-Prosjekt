@@ -18,9 +18,9 @@ class MemberController extends BaseController
 
         $validation = $this->validate(
             [
-                'epost'          => 'required|min_length[10]|max_length[50]|valid_email',
-                'fname'          => 'required|min_length[4]|max_length[50]',
-                'lname'          => 'required|min_length[4]|max_length[50]',
+                'epost'          => 'required|min_length[10]|max_length[50]|valid_email|is_unique[members.email]',
+                'fname'          => 'required|min_length[2]|max_length[50]',
+                'lname'          => 'required|min_length[2]|max_length[50]',
                 'address'        => 'required|min_length[4]|max_length[50]',
                 'post_code'      => 'required|min_length[4]|max_length[4]',
                 'post_area'      => 'required',
@@ -31,7 +31,8 @@ class MemberController extends BaseController
             [ //error messages
                 "epost" => [
                     "required" => "epost må oppgis",
-                    "min_length" => "Epost må være lengre enn {param} karakterer"
+                    "min_length" => "Epost må være lengre enn {param} karakterer",
+                    "is_unique" => "Eposten er allerede i bruk. Medlemmet er kanskje allerede registrert"
                 ],
                 "fname" => [
                     "required" => "Fornavn må oppgis"
@@ -77,7 +78,7 @@ class MemberController extends BaseController
 
             $model->save($data);
 
-            return redirect()->to('/dashboard');
+            return redirect()->to('/listMembers');
         } else {
             $data['validation'] = $this->validator;
             echo view("templates/header");
@@ -88,14 +89,14 @@ class MemberController extends BaseController
 
     function listMembers()
     {
-
         $model = new \App\Models\memberModel();
+        //$data['members'] = $model->findAll();
 
-        $result = $model->findAll();
-        //$result = $model->query("select * from members")->getResult("array");
-
-        $data['title'] = "Alle medlemmer";
-        $data['members'] = $result;
+        $data = [
+            'members' => $model->paginate(10),
+            'pager' => $model->pager,
+            'title' => "Alle medlemmer"
+        ];
 
         echo view("templates/header", $data);
         echo view("member/listMemberView", $data);

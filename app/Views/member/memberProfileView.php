@@ -10,7 +10,7 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Medlems profil</h4>
-                        <a class="btn btn-primary profile-button" href="<?= base_url('/listMembers')?>">Tilbake</a>
+                        <a class="btn btn-primary" href="<?= base_url('/listMembers')?>">Tilbake</a>
                     </div>
                     <form action="" method="">
                         <fieldset disabled>
@@ -31,8 +31,8 @@
                         </fieldset>
                     </form>
                     <div class="mt-5 text-center">
-                        <a href="<?= base_url('/updateView/' . $member['id']); ?>" class="btn btn-primary profile-button" type="button">Oppdater profilen</a>
-                        <a href="<?= base_url('/deleteMember/' . $member['id']); ?>" class="btn btn-primary profile-button" type="button" onclick="return confirm('Er du sikker på at du vil slette dette medlemmet?')" >Slett profilen</a>
+                        <a href="<?= base_url('/updateView/' . $member['id']); ?>" class="btn btn-primary" type="button">Oppdater profilen</a>
+                        <a href="<?= base_url('/deleteMember/' . $member['id']); ?>" class="btn btn-danger" type="button" onclick="return confirm('Er du sikker på at du vil slette dette medlemmet?')" >Slett profilen</a>
                         <p class="m-5"></p>
                     </div>
                 </div>

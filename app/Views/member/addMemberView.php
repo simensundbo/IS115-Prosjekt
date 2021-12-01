@@ -1,16 +1,16 @@
-<main class="d-flex justify-content-center rounded-2 bg-white mt-5 mb-5">
+<div class="d-flex justify-content-center align-items-center rounded-2 bg-white flex-column">
     <?php if (isset($validation)) { ?>
         <div class="alert alert-warning">
             <?= $validation->listErrors() ?>
         </div>
     <?php }; ?>
 
-    <div class="row ">
-        <div class="col-md-5 border-right">
+    <div class="d-flex justify-content-center align-items-center row">
+        <div class="col-md-5">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Opprett medlem</h4>
-                    <a class="btn btn-primary profile-button" href="<?= base_url('/dashboard') ?>">Tilbake</a>
+                    <a class="btn btn-primary" href="<?= base_url('/listMembers') ?>">Tilbake</a>
                 </div>
                 <form action="<?= base_url("/addmember") ?>" method="post">
                     <div class="row mt-2">
@@ -39,11 +39,11 @@
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="submit">Opprett medlem</button>
+                        <button class="btn btn-primary" type="submit">Opprett medlem</button>
                         <p class="m-5"></p>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</main>
+</div>
