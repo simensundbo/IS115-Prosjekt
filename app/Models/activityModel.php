@@ -13,7 +13,9 @@ class activityModel extends Model{
         'name', 
         'startdato',
         'sluttdato',
-        'ansvarlig'
+        'ansvarlig',
+        'nestleder',
+        'matansvarlig'
     ];
     
 }

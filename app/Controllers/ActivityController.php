@@ -30,7 +30,10 @@ class ActivityController extends BaseController
                 'activity'          => 'required',
                 'stdate'          => 'required',
                 'enddate'          => 'required',
-                'member'        => 'required'
+                'ansvarlig'        => 'required',
+                'nestleder' => 'required',
+                'matansvarlig' => 'required'
+
             ],
             [ //error messages
                 "activity" => [
@@ -42,7 +45,7 @@ class ActivityController extends BaseController
                 "enddate" => [
                     "required" => "Sluttdato må oppgis"
                 ],
-                "member" => [
+                "ansvarlig" => [
                     "required" => "Ansvarlig medlem må oppgis"
                 ],
             ]
@@ -56,7 +59,9 @@ class ActivityController extends BaseController
                 'name' => $_POST['activity'],
                 'startdato' => $_POST['stdate'],
                 'sluttdato' => $_POST['enddate'],
-                'ansvarlig' => $_POST['member'],
+                'ansvarlig' => $_POST['ansvarlig'],
+                'nestleder' => $_POST['nestleder'],
+                'matansvarlig' => $_POST['matansvarlig']
             ];
 
             $model->save($data);
@@ -72,8 +77,12 @@ class ActivityController extends BaseController
 
     public function addActivityView()
     {
+        $model = new \App\Models\memberModel();
+
+        $data['members'] = $model->findAll();
+
         echo view("templates/header");
-        echo view('activity/addActivityView');
+        echo view('activity/addActivityView', $data);
         echo view("templates/footer");
     }
 }

@@ -12,6 +12,8 @@
             <th>Startdato</th>
             <th>Sluttdato</th>
             <th>Ansvarlig</th>
+            <th>Nestleder</th>
+            <th>Matansvarlig</th>
 
         </tr>
 
@@ -27,6 +29,8 @@
                 <td><?= $row['startdato'] ?></td>
                 <td><?= $row['sluttdato'] ?></td>
                 <td><?= $row['ansvarlig'] ?></td>
+                <td><?= $row['nestleder'] ?></td>
+                <td><?= $row['matansvarlig'] ?></td>
             </tr>
 
         <?php
