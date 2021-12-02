@@ -27,10 +27,46 @@
                                                                 } ?>" required></td>
             </tr>
             <tr>
-                <th>Ansvarlig (Medlems ID)*:</th>
-                <td><input type="text" name="member" value="<?php if (isset($_POST["member"])) {
-                                                                echo $_POST["member"];
-                                                            } ?>" required></td>
+                <th>Ansvarlig*:</th>
+                <td><select name="ansvarlig" id="ans">
+                        <option value=""> Velg</option>
+                        <?php
+                        foreach ($members as $row) {
+                        ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Nestleder*:</th>
+                <td><select name="nestleder" id="nest">
+                        <option value=""> Velg</option>
+                        <?php
+                        foreach ($members as $row) {
+                        ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Matansvarlig*:</th>
+                <td><select name="matansvarlig" id="mat">
+                        <option value=""> Velg</option>
+                        <?php
+                        foreach ($members as $row) {
+                        ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </td>
             </tr>
         </table>
         <input type="submit" name="submit" value="Opprett aktivitet">
