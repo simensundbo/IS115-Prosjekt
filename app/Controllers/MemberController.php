@@ -193,7 +193,7 @@ class MemberController extends BaseController
                 return redirect()->to('/memberProfile/' . $id);
             }
         } else {
-            echo ("her");
+            return redirect()->back()->withInput();
         }
     }
 

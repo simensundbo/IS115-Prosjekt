@@ -22,7 +22,7 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Oppdater medlems profil</h4>
-                        <a class="btn btn-primary profile-button" href="<?= base_url('/memberProfile/' . $member['id']) ?>">Tilbake</a>
+                        <a class="btn btn-primary profile-button" href="<?= base_url('/memberProfile/' . $member['id']) ?>"><i class="fas fa-long-arrow-alt-left"></i></a>
                     </div>
                     <form action="<?= base_url("/updateMember/" . $member['id']) ?>" method="post">
                         <div class="row mt-2">

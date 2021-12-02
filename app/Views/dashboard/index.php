@@ -5,7 +5,7 @@
         <p class=""> <?=  'Velkommen ' . ucfirst(session()->get('user')) ?> </p>
         <div class="">
             <p><?= date('l M Y') ?></p>
-            <p>Temperatur: <?= $temp ?>℃</p>
+            <p>Temperatur: <i class="fas fa-thermometer-half"></i> <?= $temp ?>℃</p>
         </div>
     </div>
 
