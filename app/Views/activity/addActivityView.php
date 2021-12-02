@@ -1,4 +1,4 @@
-<main>
+<main class="d-flex justify-content-center">
     <a href="<?= base_url('/listActivities'); ?>">Tilbake</a>
     <?php if (isset($validation)) { ?>
         <div class="alert alert-warning">

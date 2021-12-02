@@ -1,9 +1,11 @@
-<main>
-<a href="<?= base_url('/dashboard'); ?>">Tilbake til dashbordet</a>
-<a href="<?= base_url('/addActivityView')  ?>"> Legg til aktivitet</a>
+<main class="container">
 
+    <div class="mt-2 mb-2 d-flex justify-content-between">
+        <a href="<?= base_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dashbordet</a>
+        <a href="<?= base_url('/addActivityView')  ?>" class="btn btn-primary"> Legg til aktivitet</a>
+    </div>
 
-    <table>
+    <table class="table table-striped">
         <tr>
             <th>Aktivitet ID</th>
             <th>Aktivitet</th>
@@ -31,5 +33,5 @@
         }
         ?>
     </table>
-
+    <?= $pager->links(); ?>
 </main>
