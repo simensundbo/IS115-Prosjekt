@@ -7,7 +7,7 @@ class DashboardController extends BaseController
 
     public function index()
     {
-
+        //api url
         $url = "api.openweathermap.org/data/2.5/find?q=Kristiansand&units=metric&appid=f72f6212854d177ec2fffc9ac25adcc2";
 
         //starter curl
@@ -28,9 +28,11 @@ class DashboardController extends BaseController
         //lukker curl
         curl_close($ch);
 
-        $obj = json_decode($resultat);
+        //dekoder json dataen man får fra api-en
+        $arr = json_decode($resultat);
 
-        $data['temp'] = $obj->list['0']->main->temp;
+        //henter frem temperaturen fra arraysen
+        $data['temp'] = $arr->list['0']->main->temp;
 
         echo view("templates/header");
         echo view('dashboard/index', $data);
