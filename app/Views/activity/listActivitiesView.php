@@ -7,7 +7,6 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Aktivitet ID</th>
             <th>Aktivitet</th>
             <th>Startdato</th>
             <th>Sluttdato</th>
@@ -24,18 +23,18 @@
         ?>
 
             <tr>
-                <td><?= $row['id'] ?></td>
                 <td><?= $row['name'] ?></td>
                 <td><?= $row['startdato'] ?></td>
                 <td><?= $row['sluttdato'] ?></td>
-                <td><?= $row['ansvarlig'] ?></td>
-                <td><?= $row['nestleder'] ?></td>
-                <td><?= $row['matansvarlig'] ?></td>
+                <td><?= $row['AnsFname'] . " " . $row['AnsLname'] ?></td>
+                <td><?= $row['NestFname'] . " " . $row['NestLname'] ?></td>
+                <td><?= $row['MatAnsFname'] . " " . $row['MatAnsLname'] ?></td>
+
             </tr>
 
         <?php
         }
         ?>
     </table>
-    <?= $pager->links(); ?>
+
 </main>
