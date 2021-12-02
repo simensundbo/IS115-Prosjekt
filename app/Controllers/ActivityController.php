@@ -9,12 +9,12 @@ class ActivityController extends BaseController
 
         $model = new \App\Models\activityModel();
 
-        $result = $model->findAll();
+        $data = [
+            'activities' => $model->paginate(10),
+            'pager' => $model->pager,
+            'title' => "Alle aktiviteter"
+        ];
 
-        $data['title'] = "Alle aktiviteter";
-        $data['activities'] = $result;
-
-        //print_r($data);
         echo view("templates/header", $data);
         echo view("activity/listActivitiesView", $data);
         echo view("templates/footer");
