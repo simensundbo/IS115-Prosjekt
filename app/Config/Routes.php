@@ -53,6 +53,7 @@ $routes->get('/getsearchsuggestion/(:segment)', 'MemberController::getsearchSugg
 $routes->get("/listActivities", "ActivityController::listActivities");
 $routes->get("/addActivityView", "ActivityController::addActivityView");
 $routes->post("/addActivity", "ActivityController::addActivity");
+$routes->get("/comingActivities", "ActivityController::comingActivities");
 /*
  * --------------------------------------------------------------------
  * Additional Routing

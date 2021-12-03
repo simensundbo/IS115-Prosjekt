@@ -20,7 +20,7 @@
                 <a href="<?= base_url('/listMembers')  ?>" class="m-1 btn btn-primary">Medlemmer</a>
             </div>
             <div class="">
-                <a href="<?= base_url('')  ?>" class="m-1 btn btn-primary">Kommende aktiviteter</a>
+                <a href="<?= base_url('/comingActivities')  ?>" class="m-1 btn btn-primary">Kommende aktiviteter</a>
             </div>
             <div class="">
                 <a href="<?= base_url('/listActivities') ?>" class="m-1 btn btn-primary"> Se alle aktiviteter</a>
