@@ -110,7 +110,7 @@ class ActivityController extends BaseController
 
         $model = new \App\Models\activityModel();
 
-        
+
         $data['activities'] = $model->query('
         SELECT activities.id ,
        activities.name ,
@@ -126,8 +126,8 @@ class ActivityController extends BaseController
         JOIN members ansvarlig on activities.ansvarlig=ansvarlig.id
         JOIN members nestleder on activities.nestleder=nestleder.id
         join members matansvarlig on activities.matansvarlig =matansvarlig.id
-        WHERE sluttdato >= CURRENT_DATE;')->getResult('array'); 
-        
+        WHERE sluttdato >= CURRENT_DATE;')->getResult('array');
+
 
         echo view("templates/header", $data);
         echo view("activity/comingActivityView", $data);
