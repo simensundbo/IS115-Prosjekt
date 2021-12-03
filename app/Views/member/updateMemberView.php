@@ -7,7 +7,7 @@
                     <img class="rounded-circle mt-5" width="150px" height="150px" src='<?= "/assets/img/" . $member["id"] . ".png" ?>'>
                     <form action="<?= base_url('/uploadImage/' . $member['id']) ?>" method="post" enctype="multipart/form-data" class="m-2">
                         <input class="form-control mb-2" type="file" name="img">
-                        <button class="btn btn-primary profile-button" type="submit" name="submit">Last opp ett bilde</button>
+                        <button class="btn btn-primary" type="submit" name="submit">Last opp ett bilde</button>
                     </form>
                     <div>
                         <?php 
@@ -22,7 +22,7 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Oppdater medlems profil</h4>
-                        <a class="btn btn-primary profile-button" href="<?= base_url('/memberProfile/' . $member['id']) ?>"><i class="fas fa-long-arrow-alt-left"></i></a>
+                        <a class="btn btn-primary" href="<?= base_url('/memberProfile/' . $member['id']) ?>"><i class="fas fa-long-arrow-alt-left"></i></a>
                     </div>
                     <form action="<?= base_url("/updateMember/" . $member['id']) ?>" method="post">
                         <div class="row mt-2">
