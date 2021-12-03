@@ -39,9 +39,16 @@
             </div>
             <div class="col-md-4">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span>Interesser</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                    <div class="d-flex justify-content-between align-items-center experience">
+                        <p>Interesser</p>
+                        <p><a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Legg til en interesse</a></p>
+                        <!-- <span class="border px-3 p-1 add-experience">&nbsp;Legg til en ny interesse</span> -->
+                    </div>
+                    <ul class="d-flex list-group list-group text-center">
+                        <?php foreach($interests as $interest){  ?>
+                        <li class="list-group-item"><?= $interest['name'] ?></li>
+                        <?php }; ?>
+                    </ul>
                 </div>
             </div>
         </div>
