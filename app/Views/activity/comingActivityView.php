@@ -5,7 +5,11 @@
         <a href="<?= base_url('/addActivityView')  ?>" class="btn btn-primary"> Legg til aktivitet</a>
     </div>
 
+    <div class="d-flex justify-content-between align-items-center">
+        <h4>Kommende aktiviteter</h4>
+
     <p><i class="fas fa-calendar-alt"></i> Dagens dato: <?=DATE("Y-m-d")?></p>
+    </div>
 
     <table class="table table-striped">
         <tr>
