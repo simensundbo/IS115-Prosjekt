@@ -24,8 +24,6 @@ class InterestController extends BaseController
     }
 
     public function addInterest($id){
-        echo $id . " " . $_POST['interest'];
-
         $model = new \App\Models\memInterestModel();
 
         $data = [
@@ -36,7 +34,18 @@ class InterestController extends BaseController
         if($model->save($data)){
             return redirect()->to('/memberProfile/' . $id);
         }else{
-            echo "en feil skjedde";
+            $model = new \App\Models\interestModel();
+            
+            $data = [
+                'interest' => $model->findAll(),
+                'title' => 'Interesser',
+                'id' => $id,
+                'errormsg' =>  'En feil skjedde. Prøv på nytt.'
+            ];
+
+            echo view('templates/header');
+            echo view('interest/addInterestView', $data);
+            echo view('templates/footer');
         }
     }
 }
