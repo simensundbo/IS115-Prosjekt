@@ -1,9 +1,14 @@
 <main class="container">
 
-    <div class="mt-2 mb-2 d-flex justify-content-between">
-        <a href="<?= base_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dashbordet</a>
-        <a href="<?= base_url('/addActivityView')  ?>" class="btn btn-primary"> Legg til aktivitet</a>
-    </div>
+
+        <div class="mt-2 mb-2 d-flex justify-content-between">
+            <a href="<?= base_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dashbordet</a>
+            <a href="<?= base_url('/addActivityView')  ?>" class="btn btn-primary"> Legg til aktivitet</a>
+        </div>
+
+        <div>
+            <h4>Alle aktiviteter</h4>
+        </div>
 
     <table class="table table-striped">
         <tr>
