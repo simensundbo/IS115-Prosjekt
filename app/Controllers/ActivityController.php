@@ -17,7 +17,7 @@ class ActivityController extends BaseController
         ];
         */
 
-        $data['activities'] = $model -> query('
+        $data['activities'] = $model->query('
         SELECT activities.id ,
        activities.name ,
        activities.startdato,
@@ -102,6 +102,35 @@ class ActivityController extends BaseController
 
         echo view("templates/header");
         echo view('activity/addActivityView', $data);
+        echo view("templates/footer");
+    }
+
+    public function comingActivities()
+    {
+
+        $model = new \App\Models\activityModel();
+
+
+        $data['activities'] = $model->query('
+        SELECT activities.id ,
+       activities.name ,
+       activities.startdato,
+       activities.sluttdato,
+       ansvarlig.fname as AnsFname,
+       ansvarlig.lname as AnsLname,
+       nestleder.fname as NestFname,
+       nestleder.lname as NestLname,
+       matansvarlig.fname as MatAnsFname,
+       matansvarlig.lname as MatAnsLname
+        FROM activities
+        JOIN members ansvarlig on activities.ansvarlig=ansvarlig.id
+        JOIN members nestleder on activities.nestleder=nestleder.id
+        join members matansvarlig on activities.matansvarlig =matansvarlig.id
+        WHERE sluttdato >= CURRENT_DATE;')->getResult('array');
+
+
+        echo view("templates/header", $data);
+        echo view("activity/comingActivityView", $data);
         echo view("templates/footer");
     }
 }

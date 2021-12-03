@@ -20,6 +20,11 @@
             </form>
         </div>
     </div>
+
+    <div>
+        <h4>Alle medlemmer</h4>
+    </div>
+
     <table class="table table-striped">
         <tr>
             <th>Profile</th>
