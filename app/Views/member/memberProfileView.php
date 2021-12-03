@@ -39,12 +39,11 @@
             </div>
             <div class="col-md-4">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience">
-                        <p>Interesser</p>
-                        <p><a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Legg til en interesse</a></p>
-                        <!-- <span class="border px-3 p-1 add-experience">&nbsp;Legg til en ny interesse</span> -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4>Interesser</h4>
+                        <a href="<?= base_url('/addInterestView/' . $member['id']) ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Legg til en interesse</a>
                     </div>
-                    <ul class="d-flex list-group list-group text-center">
+                    <ul class="d-flex list-group list-group text-center mt-3">
                         <?php foreach($interests as $interest){  ?>
                         <li class="list-group-item"><?= $interest['name'] ?></li>
                         <?php }; ?>

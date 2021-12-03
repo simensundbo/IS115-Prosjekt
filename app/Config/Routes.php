@@ -55,6 +55,9 @@ $routes->get("/addActivityView", "ActivityController::addActivityView");
 $routes->post("/addActivity", "ActivityController::addActivity");
 $routes->get("/comingActivities", "ActivityController::comingActivities");
 
+$routes->get('/addInterestView/(:num)', 'InterestController::index/$1');
+$routes->post('addInterest/(:num)' , 'InterestController::addInterest/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
