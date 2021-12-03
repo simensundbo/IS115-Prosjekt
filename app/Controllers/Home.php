@@ -56,4 +56,8 @@ class Home extends BaseController
         print_r( $query->getResultArray());
     }
 
+    public function startview(){
+        echo view('welcome_message');
+    }
+
 }
