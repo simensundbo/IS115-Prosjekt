@@ -44,15 +44,17 @@ $routes->get("/addmemberView", "MemberController::addMemberView");
 $routes->post("/addmember", "MemberController::addMember");
 $routes->get("/listMembers", "MemberController::listMembers");
 $routes->get("/updateView/(:num)", "MemberController::updateView/$1");
+$routes->get("/memberProfile/(:num)", "MemberController::memberProfile/$1");
 $routes->match(['get', 'delete'], "/deleteMember/(:num)", "MemberController::delete/$1");
 $routes->post("/updateMember/(:num)", "MemberController::update/$1");
-$routes->get("/memberProfile/(:num)", "MemberController::memberProfile/$1");
 $routes->post('/uploadImage/(:num)', "MemberController::uploadProfileImage/$1");
 $routes->get('/getsearchsuggestion/(:segment)', 'MemberController::getsearchSuggestion/$1');
 
 $routes->get("/listActivities", "ActivityController::listActivities");
 $routes->get("/addActivityView", "ActivityController::addActivityView");
 $routes->post("/addActivity", "ActivityController::addActivity");
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

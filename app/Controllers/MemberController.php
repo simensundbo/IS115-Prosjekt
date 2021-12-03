@@ -118,6 +118,18 @@ class MemberController extends BaseController
         $model = new \App\Models\memberModel();
         $data['member'] = $model->find($id);
 
+        
+        $model = new \App\Models\memInterestModel();
+
+        $builder = $model->builder();
+        $builder->select('*');
+        $builder->join('interests', 'mem_interests.interest_id=interests.id');
+        $builder->join('members', 'mem_interests.member_id=members.id');
+        $builder->where('member_id', $id);
+        $query = $builder->get();
+
+        $data['interests'] = $query->getResultArray();
+
         echo view("templates/header", $data);
         echo view("member/memberProfileView", $data);
         echo view("templates/footer");
@@ -192,15 +204,13 @@ class MemberController extends BaseController
             if ($model->update($id, $data)) {
                 return redirect()->to('/memberProfile/' . $id);
             }
-        } else {
-            return redirect()->back()->withInput();
         }
     }
 
     function delete($id)
     {
         $model = new \App\Models\memberModel();
-        $data['member'] = $model->where('id', $id)->delete($id);
+        $data['member'] = $model->delete($id);
 
         return redirect()->to('/listMembers');
     }
@@ -269,6 +279,7 @@ class MemberController extends BaseController
     function getsearchSuggestion($string)
     {
         $model = new \App\Models\memberModel();
+
         $data['member'] = $model->query("select * from members where fname like '%$string%'")->getResult('array');
 
         $suggestions = [];

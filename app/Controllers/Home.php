@@ -41,4 +41,19 @@ class Home extends BaseController
         echo view('user/usersListView', $data);
         // echo view("templates/footer");
     }
+
+    public function join2(){
+
+        $model = new \App\Models\memInterestModel();
+
+        $builder = $model->builder();
+        $builder->select('*');
+        $builder->join('interests', 'mem_interests.interest_id=interests.id');
+        $builder->join('members', 'mem_interests.member_id=members.id');
+        $builder->where('member_id', 3);
+        $query = $builder->get();
+
+        print_r( $query->getResultArray());
+    }
+
 }
