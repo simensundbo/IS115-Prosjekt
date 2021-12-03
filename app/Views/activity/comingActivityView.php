@@ -1,7 +1,10 @@
 <main class="container">
 
     <div class="mt-2 mb-2 d-flex justify-content-between">
-        <a href="<?= base_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dashbordet</a>
+        <div>
+            <a href="<?= base_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dashbordet</a>
+            <a href="<?= base_url('/listActivities'); ?>" class="btn btn-primary">Se alle aktiviteter</a>
+        </div>
         <a href="<?= base_url('/addActivityView')  ?>" class="btn btn-primary"> Legg til aktivitet</a>
     </div>
 
@@ -13,6 +16,7 @@
 
     <table class="table table-striped">
         <tr>
+            <th>Info</th>
             <th>Aktivitet</th>
             <th>Startdato</th>
             <th>Sluttdato</th>
@@ -27,7 +31,8 @@
 
         ?>
 
-            <tr>
+            <tr class="">
+                <td><a href="<?= base_url('') ?>" class="btn btn-primary">Info</a></td>
                 <td><?= $row['name'] ?></td>
                 <td><?= $row['startdato'] ?></td>
                 <td><?= $row['sluttdato'] ?></td>

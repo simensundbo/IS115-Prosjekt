@@ -16,14 +16,14 @@
         <div class="">
             <a href="<?= base_url('/listMembers')  ?>" class="m-1 btn btn-primary">Medlemmer</a>
         </div>
-        <div class="">
+        <!-- <div class="">
             <a href="<?= base_url('/comingActivities')  ?>" class="m-1 btn btn-primary">Kommende aktiviteter</a>
+        </div> -->
+        <div class="">
+            <a href="<?= base_url('/comingActivities') ?>" class="m-1 btn btn-primary"> Aktiviteter</a>
         </div>
         <div class="">
-            <a href="<?= base_url('/listActivities') ?>" class="m-1 btn btn-primary"> Se alle aktiviteter</a>
-        </div>
-        <div class="">
-            <a href="<?php  ?>" class="m-1 btn btn-primary">Kurs</a>
+            <a href="<?php  ?>" class="m-1 btn btn-primary">Mail</a>
         </div>
         <div>
             <a href="<?= base_url('/logout') ?>" class="m-1 btn btn-danger">Logg ut</a>
