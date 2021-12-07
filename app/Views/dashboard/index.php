@@ -23,7 +23,7 @@
             <a href="<?= base_url('/comingActivities') ?>" class="m-1 btn btn-primary"> Aktiviteter</a>
         </div>
         <div class="">
-            <a href="<?php  ?>" class="m-1 btn btn-primary">Mail</a>
+            <a href="<?= base_url('/mailDashboardView') ?>" class="m-1 btn btn-primary">Mail</a>
         </div>
         <div>
             <a href="<?= base_url('/logout') ?>" class="m-1 btn btn-danger">Logg ut</a>
