@@ -29,17 +29,18 @@ class Home extends BaseController
 
     public function test()
     {
-        $model = new \App\Models\UserModel();
+        $activityModel = new \App\Models\activityModel();
 
-        $result = $model->findAll();
+        $builder = $activityModel->builder();
         
-
-        $data['users'] = $result;
-        $data['title'] = "Brukere";
-
-        // echo view("templates/header", $data);
-        echo view('user/usersListView', $data);
-        // echo view("templates/footer");
+        $builder->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
+        $builder->join('members res', 'activities.responsible=res.id');
+        $builder->join('members dep', 'activities.deputy_responsible=dep.id');
+        $builder->join('members fin', 'activities.finance_responsible=fin.id');
+        $query = $builder->get();
+        
+        $data['activity'] =  $query->getResultArray();
+        print_r($data['activity']);
     }
 
     public function join2(){
@@ -50,7 +51,7 @@ class Home extends BaseController
         $builder->select('*');
         $builder->join('interests', 'mem_interests.interest_id=interests.id');
         $builder->join('members', 'mem_interests.member_id=members.id');
-        $builder->where('member_id', 3);
+        $builder->where('interest_id', 3);
         $query = $builder->get();
 
         print_r( $query->getResultArray());

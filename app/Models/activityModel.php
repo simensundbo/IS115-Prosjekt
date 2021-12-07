@@ -10,12 +10,13 @@ class activityModel extends Model{
 
     protected $allowedFields = [
         'id', 
-        'name', 
-        'startdato',
-        'sluttdato',
-        'ansvarlig',
-        'nestleder',
-        'matansvarlig'
+        'name',
+        'location', 
+        'start_date',
+        'end_date',
+        'responsible',
+        'deputy_responsible',
+        'finance_responsible'
     ];
     
 }

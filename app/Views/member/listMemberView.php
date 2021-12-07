@@ -2,23 +2,23 @@
 
     <div class="d-flex justify-content-between pt-3 pb-2">
         <div>
-            <a href="<?= site_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dahsboard</a>
-            <a href="<?= base_url('/addmemberView'); ?>" class="btn btn-primary"> Legg til ett medlem i klubben</a>
+            <a href="<?= site_url('/dashboard'); ?>" class="btn btn-primary btn-rounded">Tilbake til dahsboard</a>
+            <a href="<?= base_url('/addmemberView'); ?>" class="btn btn-primary btn-rounded">Legg til ett medlem i klubben</a>
         </div>
+        
 
-        <div class="">
-            <form action="<?= base_url('/memberProfile'); ?>">
-                <div class="input-group">
-                    <div class="form-outline">
-                        <input onkeyup="searchSuggestion()" type="search" id="search" class="form-control" />
-                        <label class="form-label" for="form1">Søk</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+        <form action="<?= base_url('/memberProfile'); ?>">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input onkeyup="searchSuggestion()" type="search" id="search" class="form-control" />
+                    <label class="form-label" for="form1">Søk</label>
                 </div>
-                <ul id="suggestion" class="suggestion list-group">
-                </ul>
-            </form>
-        </div>
+                <button type="submit" class="btn btn-primary btn-rounded"><i class="fas fa-search"></i></button>
+            </div>
+            <ul id="suggestion" class="list-group">
+            </ul>
+        </form>
+
     </div>
 
     <div>
@@ -44,7 +44,7 @@
         ?>
 
             <tr>
-                <td><a href="<?= base_url('/memberProfile/' . $row['id']); ?>" class="btn btn-primary">Se profil</a></td>
+                <td><a href="<?= base_url('/memberProfile/' . $row['id']); ?>" class="btn btn-primary btn-rounded">Se profil</a></td>
                 <td><?= $row['fname'] ?></td>
                 <td><?= $row['lname'] ?></td>
                 <td><?= $row['email'] ?></td>

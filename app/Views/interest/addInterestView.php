@@ -2,7 +2,7 @@
     <div class="d-flex flex-column">
         <div class="d-flex justify-content-between">
             <p class="mx-2">Veg interesser</p>
-            <a href="<?= base_url('/memberProfile/' . $id) ?>" class="btn btn-primary mx-2"><i class="fas fa-long-arrow-alt-left"></i></a>
+            <a href="<?= base_url('/memberProfile/' . $id) ?>" class="btn btn-primary btn-rounded mx-2"><i class="fas fa-long-arrow-alt-left"></i></a>
         </div>
         <div>
             <?php if(isset($errormsg)){ ?>
@@ -16,7 +16,7 @@
                     <option value="<?= $i['id'] ?>"><?= $i['name'] ?></option>
                 <?php } ?>
             </select>
-            <button type="submit" class="btn btn-primary">Legg til som interesse</button>
+            <button type="submit" class="btn btn-primary btn-rounded">Legg til som interesse</button>
         </form>
     </div>
 </div>
