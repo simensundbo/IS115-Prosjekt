@@ -6,7 +6,6 @@
             <a href="<?= base_url('/addmemberView'); ?>" class="btn btn-primary btn-rounded">Legg til ett medlem i klubben</a>
         </div>
         
-
         <form action="<?= base_url('/memberProfile'); ?>">
             <div class="input-group">
                 <div class="form-outline">
