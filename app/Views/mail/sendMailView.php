@@ -9,63 +9,40 @@
         <div class="col-md-5">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Send mail til medlem</h4>
-                    <a class="btn btn-primary" href="<?= base_url('/listActivities') ?>">Tilbake</a>
+                    <h4 class="text-right">Send mail</h4>
+                    <a class="btn btn-primary" href="<?= base_url('/mailDashboardView') ?>">Tilbake</a>
                 </div>
-                <form action="<?= base_url("/addActivity") ?>" method="post">
+                <form action="<?= base_url("") ?>" method="post">
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Aktivitet</label><input type="text" name="activity" class="form-control" value="<?php if (isset($_POST["activity"])) {
-                                                                                                                                                            echo $_POST["activity"];
-                                                                                                                                                        } ?> " required></div>
-                        <div class="col-md-12"><label class="labels">Startdato</label><input type="date" name="stdate" class="form-control" value="<?php if (isset($_POST["stdate"])) {
-                                                                                                                                                        echo $_POST["stdate"];
-                                                                                                                                                    } ?>" required></div>
-                        <div class="col-md-12"><label class="labels">Sluttdato</label><input type="date" name="enddate" class="form-control" value="<?php if (isset($_POST["enddate"])) {
-                                                                                                                                                        echo $_POST["enddate"];
-                                                                                                                                                    } ?>" required></div>
-                        <div class="col-md-12"><label class="labels">Ansvarlig</label>
-                            <select name="ansvarlig" id="ans" class="form-select">
-                                <option value=""> Velg</option>
+                        <div class="col-md-12"><label class="labels">Til:</label>
+                            <select name="medlem" id="medl" class="form-select">
+                                <option value=""> Velg medlem</option>
                                 <?php
                                 foreach ($members as $row) {
                                 ?>
-                                    <option value="<?= $row['id'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
+                                    <option value="<?= $row['email'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
-                        <div class="col-md-12"><label class="labels">Nestleder</label>
-                            <select name="nestleder" id="nest" class="form-select">
-                                <option value=""> Velg</option>
-                                <?php
-                                foreach ($members as $row) {
-                                ?>
-                                    <option value="<?= $row['id'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-md-12"><label class="labels">Matansvarlig</label>
-                            <select name="matansvarlig" id="mat" class="form-select">
-                                <option value=""> Velg</option>
-                                <?php
-                                foreach ($members as $row) {
-                                ?>
-                                    <option value="<?= $row['id'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
+                        <div class="col-md-12"><label class="labels">Emne:</label><input type="text" name="emne" class="form-control" value="<?php if (isset($_POST["activity"])) {
+                                                                                                                                                    echo $_POST["activity"];
+                                                                                                                                                } ?> " required></div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Melding:</label>
+                                <textarea id="form_message" name="message" class="form-control" placeholder="Skriv meldingen her..." rows="6"></textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
                         </div>
                     </div>
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-primary" type="submit">Send mail</button>
+                        <p class="m-5"></p>
+                    </div>
+                </form>
             </div>
-            <div class="mt-5 text-center">
-                <button class="btn btn-primary" type="submit">Opprett aktivitet</button>
-                <p class="m-5"></p>
-            </div>
-            </form>
         </div>
     </div>
 </main>
