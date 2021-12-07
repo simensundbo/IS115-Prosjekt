@@ -10,7 +10,7 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Medlems profil</h4>
-                        <a class="btn btn-primary" href="<?= base_url('/listMembers')?>"><i class="fas fa-long-arrow-alt-left"></i></a>
+                        <a class="btn btn-primary btn-rounded" href="<?= base_url('/listMembers')?>"><i class="fas fa-long-arrow-alt-left"></i></a>
                     </div>
                     <form action="" method="">
                         <fieldset disabled>
@@ -31,8 +31,8 @@
                         </fieldset>
                     </form>
                     <div class="mt-5 text-center">
-                        <a href="<?= base_url('/updateView/' . $member['id']); ?>" class="btn btn-primary" type="button">Oppdater profilen</a>
-                        <a href="<?= base_url('/deleteMember/' . $member['id']); ?>" class="btn btn-danger" type="button" onclick="return confirm('Er du sikker på at du vil slette dette medlemmet?')" >Slett profilen</a>
+                        <a href="<?= base_url('/updateView/' . $member['id']); ?>" class="btn btn-primary btn-rounded" type="button">Oppdater profilen</a>
+                        <a href="<?= base_url('/deleteMember/' . $member['id']); ?>" class="btn btn-danger btn-rounded" type="button" onclick="return confirm('Er du sikker på at du vil slette dette medlemmet?')" >Slett profilen</a>
                         <p class="m-5"></p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4>Interesser</h4>
-                        <a href="<?= base_url('/addInterestView/' . $member['id']) ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Legg til en interesse</a>
+                        <a href="<?= base_url('/addInterestView/' . $member['id']) ?>" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Legg til en interesse</a>
                     </div>
                     <ul class="d-flex list-group list-group text-center mt-3">
                         <?php foreach($interests as $interest){  ?>

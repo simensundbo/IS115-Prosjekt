@@ -10,7 +10,7 @@
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Opprett medlem</h4>
-                    <a class="btn btn-primary" href="<?= base_url('/listMembers') ?>"><i class="fas fa-long-arrow-alt-left"></i></a>
+                    <a class="btn btn-primary btn-rounded" href="<?= base_url('/listMembers') ?>"><i class="fas fa-long-arrow-alt-left"></i></a>
                 </div>
                 <form action="<?= base_url("/addmember") ?>" method="post">
                     <div class="row mt-2">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary" type="submit">Opprett medlem</button>
+                        <button class="btn btn-primary btn-rounded" type="submit">Opprett medlem</button>
                         <p class="m-5"></p>
                     </div>
                 </form>

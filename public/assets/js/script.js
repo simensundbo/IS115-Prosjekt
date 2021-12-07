@@ -30,8 +30,8 @@ const searchSuggestion = () => {
         suggestion.innerHTML = li_liste;
     }
     
-    if(searchValue.length < 3){
-        suggestion.innerHTML = 'Skriv minst 3 bokstaver';
+    if(searchValue.length < 2){
+        suggestion.innerHTML = 'Skriv minst to bokstaver';
         return;
     }else{
         console.log(searchValue);

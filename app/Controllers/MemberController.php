@@ -103,6 +103,29 @@ class MemberController extends BaseController
         echo view("templates/footer");
     }
 
+    
+    function memberProfile($id)
+    {
+        $model = new \App\Models\memberModel();
+        $data['member'] = $model->find($id);
+        
+        
+        $model = new \App\Models\memInterestModel();
+        
+        $builder = $model->builder();
+        $builder->select('*');
+        $builder->join('interests', 'mem_interests.interest_id=interests.id');
+        $builder->join('members', 'mem_interests.member_id=members.id');
+        $builder->where('member_id', $id);
+        $query = $builder->get();
+        
+        $data['interests'] = $query->getResultArray();
+        
+        echo view("templates/header", $data);
+        echo view("member/memberProfileView", $data);
+        echo view("templates/footer");
+    }
+    
     function updateView($id)
     {
         $model = new \App\Models\memberModel();
@@ -112,29 +135,7 @@ class MemberController extends BaseController
         echo view("member/updateMemberView", $data);
         echo view("templates/footer");
     }
-
-    function memberProfile($id)
-    {
-        $model = new \App\Models\memberModel();
-        $data['member'] = $model->find($id);
-
-        
-        $model = new \App\Models\memInterestModel();
-
-        $builder = $model->builder();
-        $builder->select('*');
-        $builder->join('interests', 'mem_interests.interest_id=interests.id');
-        $builder->join('members', 'mem_interests.member_id=members.id');
-        $builder->where('member_id', $id);
-        $query = $builder->get();
-
-        $data['interests'] = $query->getResultArray();
-
-        echo view("templates/header", $data);
-        echo view("member/memberProfileView", $data);
-        echo view("templates/footer");
-    }
-
+    
     function update($id)
     {
 

@@ -2,10 +2,10 @@
 
     <div class="mt-2 mb-2 d-flex justify-content-between">
         <div>
-            <a href="<?= base_url('/dashboard'); ?>" class="btn btn-primary">Tilbake til dashbordet</a>
-            <a href="<?= base_url('/listActivities'); ?>" class="btn btn-primary">Se alle aktiviteter</a>
+            <a href="<?= base_url('/dashboard'); ?>" class="btn btn-primary btn-rounded">Tilbake til dashbordet</a>
+            <a href="<?= base_url('/listActivities'); ?>" class="btn btn-primary btn-rounded">Se alle aktiviteter</a>
         </div>
-        <a href="<?= base_url('/addActivityView')  ?>" class="btn btn-primary"> Legg til aktivitet</a>
+        <a href="<?= base_url('/addActivityView')  ?>" class="btn btn-primary btn-rounded"> Legg til aktivitet</a>
     </div>
 
     <div class="d-flex justify-content-between align-items-center">
@@ -18,27 +18,26 @@
         <tr>
             <th>Info</th>
             <th>Aktivitet</th>
+            <th>Sted</th>
             <th>Startdato</th>
             <th>Sluttdato</th>
             <th>Ansvarlig</th>
             <th>Nestleder</th>
-            <th>Matansvarlig</th>
+            <th>Økonomiansvarlig</th>
         </tr>
 
         <?php
-
         foreach ($activities as $row) {
-
         ?>
-
             <tr class="">
-                <td><a href="<?= base_url('') ?>" class="btn btn-primary">Info</a></td>
+                <td><a href="<?= base_url('/activityinfo/' . $row['id']) ?>" class="btn btn-primary btn-rounded">Info</a></td>
                 <td><?= $row['name'] ?></td>
-                <td><?= $row['startdato'] ?></td>
-                <td><?= $row['sluttdato'] ?></td>
-                <td><?= $row['AnsFname'] . " " . $row['AnsLname'] ?></td>
-                <td><?= $row['NestFname'] . " " . $row['NestLname'] ?></td>
-                <td><?= $row['MatAnsFname'] . " " . $row['MatAnsLname'] ?></td>
+                <td><?= $row['location'] ?></td>
+                <td><?= $row['start_date'] ?></td>
+                <td><?= $row['end_date'] ?></td>
+                <td><?= $row['resFname'] . " " . $row['resLname'] ?></td>
+                <td><?= $row['depFname'] . " " . $row['depLname'] ?></td>
+                <td><?= $row['finFname'] . " " . $row['finLname'] ?></td>
             </tr>
 
         <?php

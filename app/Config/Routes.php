@@ -54,6 +54,10 @@ $routes->get("/listActivities", "ActivityController::listActivities");
 $routes->get("/addActivityView", "ActivityController::addActivityView");
 $routes->post("/addActivity", "ActivityController::addActivity");
 $routes->get("/comingActivities", "ActivityController::comingActivities");
+$routes->get("/activityinfo/(:num)", "ActivityController::activityInfo/$1");
+$routes->get('/deleteActivity/(:num)', "ActivityController::delete/$1");
+$routes->get('/activityUpdateView/(:num)', "ActivityController::updateView/$1");
+$routes->post('/activityUpdate/(:num)', "ActivityController::update/$1");
 
 $routes->get('/addInterestView/(:num)', 'InterestController::index/$1');
 $routes->post('addInterest/(:num)' , 'InterestController::addInterest/$1');

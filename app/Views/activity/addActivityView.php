@@ -17,6 +17,9 @@
                         <div class="col-md-12"><label class="labels">Aktivitet</label><input type="text" name="activity" class="form-control" value="<?php if (isset($_POST["activity"])) {
                                                                                                                                                             echo $_POST["activity"];
                                                                                                                                                         } ?> " required></div>
+                        <div class="col-md-12"><label class="labels">Sted</label><input type="text" name="location" class="form-control" value="<?php if (isset($_POST["location"])) {
+                                                                                                                                                        echo $_POST["location"];
+                                                                                                                                                    } ?>" required></div>
                         <div class="col-md-12"><label class="labels">Startdato</label><input type="date" name="stdate" class="form-control" value="<?php if (isset($_POST["stdate"])) {
                                                                                                                                                         echo $_POST["stdate"];
                                                                                                                                                     } ?>" required></div>
@@ -47,8 +50,8 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="col-md-12"><label class="labels">Matansvarlig</label>
-                            <select name="matansvarlig" id="mat" class="form-select">
+                        <div class="col-md-12"><label class="labels">Økonomiansvarlig</label>
+                            <select name="okonomiansvarlig" id="mat" class="form-select">
                                 <option value=""> Velg</option>
                                 <?php
                                 foreach ($members as $row) {
