@@ -4,6 +4,7 @@
         <div>
             <a href="<?= site_url('/dashboard'); ?>" class="btn btn-primary btn-rounded">Tilbake til dahsboard</a>
             <a href="<?= base_url('/addmemberView'); ?>" class="btn btn-primary btn-rounded">Legg til ett medlem i klubben</a>
+            <a href="<?= base_url('/filterInterestView'); ?>" class="btn btn-dark btn-rounded">Filtrer</a>
         </div>
         
         <form action="<?= base_url('/memberProfile'); ?>">

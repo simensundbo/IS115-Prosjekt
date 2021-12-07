@@ -50,3 +50,56 @@ const searchSuggestion = () => {
         xhr.send();
     }
 }
+
+const getFilter = (id) => {
+
+    const showResult = (resultat) => {
+        let tr = [];
+        let tbody = document.getElementById('async');
+
+        document.getElementById('interest').innerHTML = "Interesse: " + resultat[0].name;
+
+        for(i = 0; i < resultat.length; i++){
+            tr += "<tr>"
+            tr += "<td >" + resultat[i].fname + "</td>"
+            tr += "<td >" + resultat[i].lname + "</td>"
+            tr += "<td >" + resultat[i].email + "</td>"
+            tr += "<td >" + resultat[i].mobile_nr + "</td>"
+            tr += "</tr>"
+        }
+        console.log(tr)
+        tbody.innerHTML = tr;   
+    }
+
+    const emtyResult = () => {
+        let tr = [];
+        let tbody = document.getElementById('async');
+
+        document.getElementById('interest').innerHTML = "Ingen har denne interessen &#128560";
+
+        tr += "<tr></tr>";
+        tbody.innerHTML = tr; 
+
+    }
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '/filterInterestsAsync/'+ id , true);
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            let resultat = xhr.responseText;
+            resultat = JSON.parse(resultat);
+            console.log(resultat);
+
+            if(resultat.length > 0){
+                showResult(resultat);
+            }else{
+                emtyResult();
+            } 
+        }
+    };
+
+
+}

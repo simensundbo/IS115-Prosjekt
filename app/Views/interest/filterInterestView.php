@@ -1,55 +1,48 @@
-<div>
+<div class="container">
 
-    <h2>Interesser</h2>
+    <div class="d-flex flex-column">
+        <div>
+            <a class="btn btn-primary btn-rounded mt-2" href="<?= base_url('/listMembers') ?>"><i class="fas fa-long-arrow-alt-left"></i></a>
+        </div>
 
-    <h3>Velg interesse her</h3>
+        <h2>Interesser</h2>
 
-
-    <form method="post" action="<?= base_url('/filterInterest') ?>">
-        <select name="medlem" id="medl" class="form-select">
-            <option value=""> Velg interesse</option>
-            <?php
-            foreach ($interests as $row) {
-            ?>
-                <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
-            <?php
-            }
-            ?>
-        </select>
-        <input type="submit" name="registrer" value="Søk">
-    </form>
+        <h3>Velg interesse her</h3>
 
 
-    <div>
-        <h4>Medlemmer</h4>
-        <h5><?= isset($medlem_int['0']['name']) ? $medlem_int['0']['name'] : '' ?></h5>
+        <form method="post" action="" class="mb-5">
+            <select name="medlem" id="medl" class="form-select">
+                <option value=""> Velg interesse</option>
+                <?php
+                foreach ($interests as $row) {
+                ?>
+                    <option onclick="getFilter(<?= $row['id'] ?>)" value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </form>
+
+
+        <div>
+            <h4>Medlemmer</h4>
+            <h5 id="interest"></h5>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                
+                    <th>Fornavn</th>
+                    <th>Etternavn</th>
+                    <th>E-post</th>
+                    <th>Mobilnummer</th>
+    
+            </thead>
+
+            <tbody id="async">
+
+            </tbody>
+        </table>
+
     </div>
-
-    <table class="table table-striped">
-        <tr>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
-            <th>E-post</th>
-            <th>Mobilnummer</th>
-        </tr>
-
-        <?php
-        if (isset($medlem_int)) {
-
-            foreach ($medlem_int as $row) {
-        ?>
-
-                <tr>
-                    <td><?= $row['fname'] ?></td>
-                    <td><?= $row['lname'] ?></td>
-                    <td><?= $row['email'] ?></td>
-                    <td><?= $row['mobile_nr'] ?></td>
-                </tr>
-
-        <?php
-            }
-        }
-        ?>
-    </table>
-
 </div>
