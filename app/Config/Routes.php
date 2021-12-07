@@ -67,6 +67,7 @@ $routes->post('/filterInterestsAsync/(:num)', "InterestController::filterInteres
 
 $routes->get('/mailDashboardView', "MailController::mailView");
 $routes->get('/sendMailView', "MailController::sendMail");
+$routes->get('/filterInterestView', "InterestController::filterInterestsView");
 
 /*
  * --------------------------------------------------------------------
