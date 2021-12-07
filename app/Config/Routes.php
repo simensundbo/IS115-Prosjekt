@@ -57,6 +57,7 @@ $routes->get("/comingActivities", "ActivityController::comingActivities");
 
 $routes->get('/addInterestView/(:num)', 'InterestController::index/$1');
 $routes->post('addInterest/(:num)' , 'InterestController::addInterest/$1');
+$routes->get('/mailDashboardView', "MailController::mailView");
 
 /*
  * --------------------------------------------------------------------
