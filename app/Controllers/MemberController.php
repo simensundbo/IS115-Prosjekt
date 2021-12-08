@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class MemberController extends BaseController
 {
-
+    //viser view for å legge til ett medlem
     function addMemberView()
     {
         echo view("templates/header");
@@ -12,6 +12,7 @@ class MemberController extends BaseController
         echo view("templates/footer");
     }
 
+    //legger til ett medlem
     function addMember()
     {
         helper(['form']);
@@ -87,6 +88,7 @@ class MemberController extends BaseController
         }
     }
 
+    //lister medlemmer
     function listMembers()
     {
         $model = new \App\Models\memberModel();
@@ -103,7 +105,7 @@ class MemberController extends BaseController
         echo view("templates/footer");
     }
 
-    
+    //viser medlems profilen
     function memberProfile($id)
     {
         $model = new \App\Models\memberModel();
@@ -126,6 +128,7 @@ class MemberController extends BaseController
         echo view("templates/footer");
     }
     
+    //viser frem view-et som oppdaterer medlems info
     function updateView($id)
     {
         $model = new \App\Models\memberModel();
@@ -142,14 +145,12 @@ class MemberController extends BaseController
         
         $data['interests'] = $query->getResultArray();
 
-
-        //print_r($data['interests']);
-
         echo view("templates/header", $data);
         echo view("member/updateMemberView", $data);
         echo view("templates/footer");
     }
     
+    //oppdaterer medlemmet
     function update($id)
     {
 
@@ -230,6 +231,7 @@ class MemberController extends BaseController
         return redirect()->to('/listMembers');
     }
 
+    //laster opp ett profilbilde til medlemmene
     function uploadProfileImage($id)
     {
         if ($_FILES["img"]["error"] == 0) {
@@ -291,6 +293,7 @@ class MemberController extends BaseController
         }
     }
 
+    //gir søke forslag under søkefeltet
     function getsearchSuggestion($string)
     {
         $model = new \App\Models\memberModel();

@@ -8,7 +8,7 @@ use function PHPUnit\Framework\isEmpty;
 
 class InterestController extends BaseController
 {
-    //add Interest view
+    //viser frem view-et som legger til en interesse
     public function addInterestView($id)
     {
         $model = new \App\Models\interestModel();
@@ -25,6 +25,7 @@ class InterestController extends BaseController
 
     }
 
+    //legger til en interesse
     public function addInterest($id){
         $model = new \App\Models\memInterestModel();
 
@@ -51,6 +52,7 @@ class InterestController extends BaseController
         }
     }
 
+    //viser frem view-et som man kan filtrere etter interesse
     public function filterInterestsView()
     {
         $model = new \App\Models\interestModel();
@@ -63,6 +65,7 @@ class InterestController extends BaseController
         
     }
 
+    ////viser frem filtere uten ajax
     public function filterInterests(){
 
         $memberId = $_POST['medlem']; 
@@ -88,6 +91,7 @@ class InterestController extends BaseController
         echo view("templates/footer");
     }
 
+    //viser frem filtere asynkront ved ajax
     public function filterInterestsAsync($id){
 
         $model = new \App\Models\interestModel();
@@ -104,9 +108,10 @@ class InterestController extends BaseController
         $builder->where('interests.id', $id);
         $query = $builder->get();
 
-        print_r( json_encode( $query->getResultArray()));
+        print_r(json_encode( $query->getResultArray()));
     }
 
+    //sletter en som er koblet til ett medlem
     public function deleteInterests($memberId, $interestId){
 
         $model= new \App\Models\memInterestModel();

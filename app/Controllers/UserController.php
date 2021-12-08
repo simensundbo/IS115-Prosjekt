@@ -5,6 +5,7 @@ namespace App\Controllers;
 class UserController extends BaseController
 {
 
+    //viser innloggings view et
     public function loginView()
     {
         echo view("templates/header");
@@ -13,6 +14,7 @@ class UserController extends BaseController
     }
 
 
+    //funksjonen som sjekker passord og brukernavn
     public function login(){
         helper(['form']);
 
@@ -71,6 +73,7 @@ class UserController extends BaseController
 
     }
 
+    //viser registrerings view-et
     public function registerView(){
         echo view("templates/header");
         echo view('user/registerView');
@@ -78,6 +81,7 @@ class UserController extends BaseController
 
     }
 
+    //registrerer en ny bruker
     public function registrer(){
         helper(['form']);
 
@@ -125,6 +129,7 @@ class UserController extends BaseController
 
     }
 
+    //logger ut
     public function logout(){
         $session = session();
         $session->destroy();

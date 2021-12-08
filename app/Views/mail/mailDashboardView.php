@@ -10,7 +10,7 @@
         <h4>Mail</h4>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
         <div class="">
             <a href="<?= base_url('/sendMailView')?>" class="m-1 btn btn-primary btn-rounded"> Send mail</a>
         </div>

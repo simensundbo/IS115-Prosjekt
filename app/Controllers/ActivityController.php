@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 class ActivityController extends BaseController
 {
+    //lister alle aktiviteter
     function listActivities()
     {
         $model = new \App\Models\activityModel();
@@ -24,9 +25,9 @@ class ActivityController extends BaseController
         echo view("templates/footer");
     }
 
+    //legger til en aktivitet
     function addActivity()
     {
-
         helper(['form']);
 
         $validation = $this->validate(
@@ -82,6 +83,7 @@ class ActivityController extends BaseController
         }
     }
 
+    //vier frem view-et som tar inn data til en ny aktivitet
     public function addActivityView()
     {
         $model = new \App\Models\memberModel();
@@ -93,9 +95,9 @@ class ActivityController extends BaseController
         echo view("templates/footer");
     }
 
+    //viser kommende aktiviteter
     public function comingActivities()
     {
-
         $model = new \App\Models\activityModel();
 
         $builder = $model->builder();
@@ -115,6 +117,7 @@ class ActivityController extends BaseController
         echo view("templates/footer");
     }
 
+    //viser aktivitets info siden
     public function activityInfo($id){
         
         $activityModel = new \App\Models\activityModel();
@@ -146,6 +149,7 @@ class ActivityController extends BaseController
         echo view("templates/footer");
     }
 
+    //viser frem udate view med data innfylt
     public function updateView($id){
         $activityModel = new \App\Models\activityModel();
 
@@ -170,6 +174,7 @@ class ActivityController extends BaseController
 
     }
 
+    //oppdaterer aktiviteten
     public function update($id){
         
         helper(['form']);
@@ -253,6 +258,7 @@ class ActivityController extends BaseController
 
     }
 
+    //sjetter en aktivitet
     public function delete($id){
         $model = new \App\Models\activityModel();
 
@@ -265,16 +271,11 @@ class ActivityController extends BaseController
 
     }
 
-    public function activityRegistrationView()
-    {
-        echo view("templates/header");
-        echo view("activity/activityRegistrationView");
-        echo view("templates/footer");
-    }
-
+    //viser frem view som lar medlemmer melde seg på aktiviteter
     public function registerMemberView($id){
 
         $model = new \App\Models\memberModel();
+        $memActivityModel = new \App\Models\memActivityModel();
 
         $data = [
             'members' => $model->findAll(),
@@ -282,12 +283,22 @@ class ActivityController extends BaseController
             'id' => $id
         ];
 
+        $builder = $memActivityModel->builder();
+
+        $builder->select('mem_activity.member_id, members.fname, members.lname');
+        $builder->join('members', 'mem_activity.member_id=members.id');
+        $builder->where('activity_id', $id);
+        $query = $builder->get();
+
+        $data['registered'] =  $query->getResultArray();
+
         echo view('templates/header');
         echo view('activity/registerMemberView', $data);
         echo view('templates/footer');
 
     }
 
+    //registrerer påmeldingen av et medlem til en git aktivitet
     public function registerMember($id){
 
         $model = new \App\Models\memActivityModel();
@@ -298,7 +309,7 @@ class ActivityController extends BaseController
         ];
 
         if($model->save($data)){
-            return redirect()->to('/activityinfo/' . $id);
+            return redirect()->to('/registerMemberView/' . $id);
         }else{
             $model = new \App\Models\activityModel();
             
@@ -313,6 +324,15 @@ class ActivityController extends BaseController
             echo view('activity/registerMemberView', $data);
             echo view('templates/footer');
         }
+    }
 
+    //fjerner medlemmer fra en aktivitet
+    public function deleteActivityMember($memberId, $activityId)
+    {
+        $model = new \App\Models\memActivityModel();
+
+        $model->where('member_id', $memberId)->where('activity_id', $activityId)->delete();
+
+        return redirect()->to('/registerMemberView/' . $activityId);
     }
 }

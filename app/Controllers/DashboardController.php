@@ -5,6 +5,7 @@ namespace App\Controllers;
 class DashboardController extends BaseController
 {
 
+    //viser frem dashbordet
     public function index()
     {
         //api url

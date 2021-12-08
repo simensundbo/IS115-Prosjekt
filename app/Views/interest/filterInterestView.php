@@ -11,7 +11,7 @@
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Velg interesse:</label>
                             <select name="medlem" id="medl" class="form-select">
-                                <option value=""></option>
+                                <option value="" default>Velg</option>
                                 <?php
                                 foreach ($interests as $row) {
                                 ?>

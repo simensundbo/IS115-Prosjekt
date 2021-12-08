@@ -25,6 +25,7 @@ class AuthGuard implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        //sjekker om en bruker er pålogget
         if(!session()->get('loggedon')){
             return redirect()->to('/login');
         }
