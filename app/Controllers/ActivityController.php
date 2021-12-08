@@ -267,10 +267,52 @@ class ActivityController extends BaseController
 
     public function activityRegistrationView()
     {
-
-
         echo view("templates/header");
         echo view("activity/activityRegistrationView");
         echo view("templates/footer");
+    }
+
+    public function registerMemberView($id){
+
+        $model = new \App\Models\memberModel();
+
+        $data = [
+            'members' => $model->findAll(),
+            'title' => 'aktivitet',
+            'id' => $id
+        ];
+
+        echo view('templates/header');
+        echo view('activity/registerMemberView', $data);
+        echo view('templates/footer');
+
+    }
+
+    public function registerMember($id){
+
+        $model = new \App\Models\memActivityModel();
+
+        $data = [
+            'activity_id' => $id,
+            'member_id' => $_POST['member']
+        ];
+
+        if($model->save($data)){
+            return redirect()->to('/activityinfo/' . $id);
+        }else{
+            $model = new \App\Models\activityModel();
+            
+            $data = [
+                'activity' => $model->findAll(),
+                'title' => 'Activiteter',
+                'id' => $id,
+                'errormsg' =>  'En feil skjedde. Prøv på nytt.'
+            ];
+
+            echo view('templates/header');
+            echo view('activity/registerMemberView', $data);
+            echo view('templates/footer');
+        }
+
     }
 }

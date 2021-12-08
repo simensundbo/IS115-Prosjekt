@@ -58,6 +58,10 @@ $routes->get("/activityinfo/(:num)", "ActivityController::activityInfo/$1");
 $routes->get('/deleteActivity/(:num)', "ActivityController::delete/$1");
 $routes->get('/activityUpdateView/(:num)', "ActivityController::updateView/$1");
 $routes->post('/activityUpdate/(:num)', "ActivityController::update/$1");
+$routes->post('/activityUpdate/(:num)', "ActivityController::update/$1");
+$routes->get("/registerMemberView/(:num)", "ActivityController::registerMemberView/$1");
+$routes->post("/registerMember/(:num)", "ActivityController::registerMember/$1");
+
 
 $routes->get('/addInterestView/(:num)', 'InterestController::index/$1');
 $routes->post('addInterest/(:num)' , 'InterestController::addInterest/$1');
