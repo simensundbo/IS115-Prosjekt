@@ -100,6 +100,4 @@ const getFilter = (id) => {
             } 
         }
     };
-
-
 }
