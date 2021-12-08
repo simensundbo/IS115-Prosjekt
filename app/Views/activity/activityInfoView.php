@@ -1,5 +1,5 @@
-<div class="">
-    <div class="container rounded bg-white mt-5 mb-5">
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="d-flex justify-content-center">
         <div class="row">
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
@@ -30,7 +30,7 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4>Påmeldte<h4>
-                        <a href="<?= base_url('/registerMemberView/' . $activity['0']['id'])?>" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Registrer</a>
+                        <a href="<?= base_url('/registerMemberView/' . $activity['0']['id'])?>" class="btn btn-primary btn-rounded">Rediger</a>
                     </div>
                     <ul class="d-flex list-group list-group text-center mt-3">
                     <?php foreach($registered as $person){  ?>

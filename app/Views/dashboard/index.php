@@ -9,16 +9,10 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="">
-            <a href="<?php  ?>" class="m-1 btn btn-primary btn-rounded"> Din profil</a>
-        </div>
+    <div class="d-flex justify-content-between align-items-center gap-4">
         <div class="">
             <a href="<?= base_url('/listMembers')  ?>" class="m-1 btn btn-primary btn-rounded">Medlemmer</a>
         </div>
-        <!-- <div class="">
-            <a href="<?= base_url('/comingActivities')  ?>" class="m-1 btn btn-primary">Kommende aktiviteter</a>
-        </div> -->
         <div class="">
             <a href="<?= base_url('/comingActivities') ?>" class="m-1 btn btn-primary btn-rounded"> Aktiviteter</a>
         </div>

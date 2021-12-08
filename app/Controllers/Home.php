@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
+    //viser start view-et
     public function index()
     {
         echo view("templates/header");
@@ -11,6 +12,7 @@ class Home extends BaseController
         echo view("templates/footer");
     }
 
+    //test
     public function users()
     {
 
@@ -27,6 +29,7 @@ class Home extends BaseController
         echo view("templates/footer");
     }
 
+    //test
     public function test()
     {
         $activityModel = new \App\Models\activityModel();
@@ -43,20 +46,7 @@ class Home extends BaseController
         print_r($data['activity']);
     }
 
-    public function join2(){
-
-        $model = new \App\Models\memInterestModel();
-
-        $builder = $model->builder();
-        $builder->select('*');
-        $builder->join('interests', 'mem_interests.interest_id=interests.id');
-        $builder->join('members', 'mem_interests.member_id=members.id');
-        $builder->where('interest_id', 3);
-        $query = $builder->get();
-
-        print_r( $query->getResultArray());
-    }
-
+    //test
     public function startview(){
         echo view('welcome_message');
     }

@@ -15,6 +15,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class MailController extends BaseController
 {
+    //viser mail dashbordet
     function index()
     {
         echo view("templates/header");
@@ -22,6 +23,7 @@ class MailController extends BaseController
         echo view("templates/footer");
     }
 
+    //viser frem send mail viewt
     function sendMailView()
     {
         $model = new \App\Models\memberModel();
@@ -33,6 +35,7 @@ class MailController extends BaseController
         echo view("templates/footer");
     }
 
+    //sender mailen med data fra view-et
     public function sendMail()
     {
         $mail = new PHPMailer(true);
@@ -69,6 +72,8 @@ class MailController extends BaseController
             return redirect()->to('mailDashboard')->with('msg', 'Meldingen ble ikke sendt. Error: ' . $error);
         }
     }
+
+    //viser liste av medlemmer som man kan sende mail til
     public function sendNewsMailView()
     {
         $model = new \App\Models\memberModel();
@@ -84,6 +89,7 @@ class MailController extends BaseController
         echo view("templates/footer");
     }
 
+    //sender nyhetsbrev
     public function sendNewsMail($to)
     {
         $mail = new PHPMailer(true);
