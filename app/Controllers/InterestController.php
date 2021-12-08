@@ -4,10 +4,12 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
+use function PHPUnit\Framework\isEmpty;
+
 class InterestController extends BaseController
 {
     //add Interest view
-    public function index($id)
+    public function addInterestView($id)
     {
         $model = new \App\Models\interestModel();
 
@@ -103,7 +105,16 @@ class InterestController extends BaseController
         $query = $builder->get();
 
         print_r( json_encode( $query->getResultArray()));
+    }
 
+    public function deleteInterests($memberId, $interestId){
+
+        $model= new \App\Models\memInterestModel();
+
+        $model->where('member_id', $memberId)->where('interest_id', $interestId)->delete();
+        
+        return redirect()->to('/updateView/' . $memberId);
+    
     }
 
     

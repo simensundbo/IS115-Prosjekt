@@ -63,11 +63,11 @@ $routes->get("/registerMemberView/(:num)", "ActivityController::registerMemberVi
 $routes->post("/registerMember/(:num)", "ActivityController::registerMember/$1");
 
 
-$routes->get('/addInterestView/(:num)', 'InterestController::index/$1');
+$routes->get('/addInterestView/(:num)', 'InterestController::addInterestView/$1');
 $routes->post('addInterest/(:num)' , 'InterestController::addInterest/$1');
 $routes->get('/filterInterestView', "InterestController::filterInterestsView");
-$routes->post('/filterInterest', "InterestController::filterInterests");
 $routes->post('/filterInterestsAsync/(:num)', "InterestController::filterInterestsAsync/$1");
+$routes->get('/deleteInterests/(:num)/(:num)', "InterestController::deleteInterests/$1/$2");
 
 $routes->get('/mailDashboardView', "MailController::mailView");
 $routes->get('/sendMailView', "MailController::sendMail");

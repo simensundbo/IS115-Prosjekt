@@ -41,7 +41,6 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4>Interesser</h4>
-                        <a href="<?= base_url('/addInterestView/' . $member['id']) ?>" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Legg til en interesse</a>
                     </div>
                     <ul class="d-flex list-group list-group text-center mt-3">
                         <?php foreach($interests as $interest){  ?>
