@@ -69,9 +69,12 @@ $routes->get('/filterInterestView', "InterestController::filterInterestsView");
 $routes->post('/filterInterestsAsync/(:num)', "InterestController::filterInterestsAsync/$1");
 $routes->get('/deleteInterests/(:num)/(:num)', "InterestController::deleteInterests/$1/$2");
 
-$routes->get('/mailDashboardView', "MailController::mailView");
-$routes->get('/sendMailView', "MailController::sendMail");
-$routes->get('/filterInterestView', "InterestController::filterInterestsView");
+$routes->get('/mailDashboard', "MailController::index");
+$routes->get('/sendMailView', "MailController::sendMailView");
+$routes->post('/sendMail', "MailController::sendMail");
+$routes->get('/sendNewsMailView', "MailController::sendNewsMailView");
+$routes->get('/sendNewsMail/(:segment)', "MailController::sendNewsMail/$1");
+
 
 /*
  * --------------------------------------------------------------------

@@ -15,7 +15,7 @@
             <a href="<?= base_url('/sendMailView')?>" class="m-1 btn btn-primary"> Send mail</a>
         </div>
         <div class="">
-            <a href="<?= base_url('')  ?>" class="m-1 btn btn-primary">Send nyhetsbrev</a>
+            <a href="<?= base_url('/sendNewsMailView')  ?>" class="m-1 btn btn-primary">Send nyhetsbrev</a>
         </div>
     </div>
 
