@@ -131,6 +131,20 @@ class MemberController extends BaseController
         $model = new \App\Models\memberModel();
         $data['member'] = $model->find($id);
 
+        $model = new \App\Models\memInterestModel();
+        
+        $builder = $model->builder();
+        $builder->select('*');
+        $builder->join('interests', 'mem_interests.interest_id=interests.id');
+        $builder->join('members', 'mem_interests.member_id=members.id');
+        $builder->where('member_id', $id);
+        $query = $builder->get();
+        
+        $data['interests'] = $query->getResultArray();
+
+
+        //print_r($data['interests']);
+
         echo view("templates/header", $data);
         echo view("member/updateMemberView", $data);
         echo view("templates/footer");
