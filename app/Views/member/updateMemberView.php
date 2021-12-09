@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" height="150px" src='<?= "/assets/img/" . $member["id"] . ".png" ?>'>
+                    <img class="rounded-circle mt-5" width="150px" height="150px" src='<?= isset($profilepic['0']['path']) ? '/' .  $profilepic['0']['path'] : '' ?>'>
                     <form action="<?= base_url('/uploadImage/' . $member['id']) ?>" method="post" enctype="multipart/form-data" class="m-2">
                         <input class="form-control mb-2" type="file" name="img">
                         <button class="btn btn-primary btn-rounded" type="submit" name="submit">Last opp ett bilde</button>
