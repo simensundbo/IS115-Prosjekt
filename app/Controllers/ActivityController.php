@@ -7,8 +7,10 @@ class ActivityController extends BaseController
     //lister alle aktiviteter
     function listActivities()
     {
+        //kobler sammen til aktivitetstabellen i databasen
         $model = new \App\Models\activityModel();
 
+        //spørring for å hente ut all info om activiteten, samt navn på de ansvarlige (roller)
         $builder = $model->builder();
         
         $builder->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
@@ -17,6 +19,7 @@ class ActivityController extends BaseController
         $builder->join('members fin', 'activities.finance_responsible=fin.id');
         $query = $builder->get();
         
+        //legger uthentet data inn i en matrise
         $data['activities'] =  $query->getResultArray();
 
 
@@ -30,6 +33,7 @@ class ActivityController extends BaseController
     {
         helper(['form']);
 
+        //validering, sjekker at alle felt er fylt inn
         $validation = $this->validate(
             [
                 'activity'          => 'required',
@@ -41,7 +45,7 @@ class ActivityController extends BaseController
                 'okonomiansvarlig' => 'required'
 
             ],
-            [ //error messages
+            [ //meldingene som kommer opp ved feil
                 "activity" => [
                     "required" => "Aktivitet må oppgis",
                 ],
@@ -58,7 +62,7 @@ class ActivityController extends BaseController
         );
 
         if ($validation) {
-            //true. Hente ur data fra fromet
+            //true. Hente ur data fra formet og lagrer i databasen, hvis alle nødvendig input felt fylt inn 
             $model = new \App\Models\activityModel();
 
             $data = [
@@ -83,9 +87,10 @@ class ActivityController extends BaseController
         }
     }
 
-    //vier frem view-et som tar inn data til en ny aktivitet
+    //viser frem view-et som tar inn data til en ny aktivitet
     public function addActivityView()
     {
+        //db tilkobling
         $model = new \App\Models\memberModel();
 
         $data['members'] = $model->findAll();
@@ -95,11 +100,12 @@ class ActivityController extends BaseController
         echo view("templates/footer");
     }
 
-    //viser kommende aktiviteter
+    //viser kommende aktiviteter (alle aktiviteter fra dagens dato)
     public function comingActivities()
     {
         $model = new \App\Models\activityModel();
 
+        //sql spørring helt lik som ListActivities, men som henter ut fra dagens dato
         $builder = $model->builder();
         
         $builder->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
@@ -109,6 +115,7 @@ class ActivityController extends BaseController
         $builder->where('end_date >=', date('Y-m-d'));
         $query = $builder->get();
         
+        //lagrer dataen i en matrise
         $data['activities'] =  $query->getResultArray();
 
 
@@ -120,10 +127,12 @@ class ActivityController extends BaseController
     //viser aktivitets info siden
     public function activityInfo($id){
         
+        //db tilkobling
         $activityModel = new \App\Models\activityModel();
 
         $memActivityModel = new \App\Models\memActivityModel();
 
+        //sql spørring, lik som listActivities
         $builder1 = $activityModel->builder();
         
         $builder1->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
@@ -133,8 +142,10 @@ class ActivityController extends BaseController
         $builder1->where('activities.id', $id);
         $query1 = $builder1->get();
 
+        //lagre i matrise
         $data['activity'] =  $query1->getResultArray();
 
+        // sql spørring nr 2, henter medlemmer som er meldt på aktivitet
         $builder2 = $memActivityModel->builder();
 
         $builder2->select('members.fname, members.lname');
@@ -142,6 +153,7 @@ class ActivityController extends BaseController
         $builder2->where('activity_id', $id);
         $query2 = $builder2->get();
 
+        //lagrer dataen i en matrise
         $data['registered'] =  $query2->getResultArray();
         
         echo view("templates/header");
@@ -151,10 +163,13 @@ class ActivityController extends BaseController
 
     //viser frem udate view med data innfylt
     public function updateView($id){
+
+        //db tilkobling
         $activityModel = new \App\Models\activityModel();
 
         $memberModel = new \App\Models\memberModel();
 
+        //sql spørring, lik som listActivities
         $builder1 = $activityModel->builder();
         
         $builder1->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
@@ -164,8 +179,10 @@ class ActivityController extends BaseController
         $builder1->where('activities.id', $id);
         $query1 = $builder1->get();
         
+        //lagrer data fra spørring over i en matrise
         $data['activity'] =  $query1->getResultArray();
 
+        //lagrer alle medlemmene i en matrise, for drop down meny
         $data['members'] = $memberModel->findAll();
         
         echo view("templates/header");
@@ -179,6 +196,7 @@ class ActivityController extends BaseController
         
         helper(['form']);
 
+        //Validering for å sjekke at bruker fyller inn nødvendig felt
         $validation = $this->validate(
             [
                 'activity'          => 'required',
@@ -214,7 +232,7 @@ class ActivityController extends BaseController
 
 
         if ($validation) {
-            //true. Hente ur data fra fromet
+            //true. Hente ur data fra formet, lagrer i db dersom validering er godkjent
             $model = new \App\Models\activityModel();
 
             $data = [
@@ -262,6 +280,7 @@ class ActivityController extends BaseController
     public function delete($id){
         $model = new \App\Models\activityModel();
 
+        //sjekk at ID finnes i db før den slettes
         if($model->find($id)){
             $model->delete($id);
             return redirect()->to('/comingActivities');
@@ -301,13 +320,16 @@ class ActivityController extends BaseController
     //registrerer påmeldingen av et medlem til en git aktivitet
     public function registerMember($id){
 
+        //db tilkobling
         $model = new \App\Models\memActivityModel();
 
+        //henter medlem fra dropdown og registrerer den mot git aktivitet
         $data = [
             'activity_id' => $id,
             'member_id' => $_POST['member']
         ];
 
+        //lagring av data, feilmelding ved feil
         if($model->save($data)){
             return redirect()->to('/registerMemberView/' . $id);
         }else{
