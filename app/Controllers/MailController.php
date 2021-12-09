@@ -18,6 +18,7 @@ class MailController extends BaseController
     //viser mail dashbordet
     function index()
     {
+        //printer ut views
         echo view("templates/header");
         echo view('mail/mailDashboardView');
         echo view("templates/footer");
@@ -26,10 +27,12 @@ class MailController extends BaseController
     //viser frem send mail viewt
     function sendMailView()
     {
+        //initialiserer modellen
         $model = new \App\Models\memberModel();
 
         $data['members'] = $model->findAll();
 
+        //printer ut views
         echo view("templates/header");
         echo view('mail/sendMailView', $data);
         echo view("templates/footer");
@@ -38,8 +41,10 @@ class MailController extends BaseController
     //sender mailen med data fra view-et
     public function sendMail()
     {
+        //starter PHPMailer
         $mail = new PHPMailer(true);
 
+        //henter vierdiene fra view-et
         $to = $_POST['member'];
         $subject = $_POST['subject'];
         $body = $_POST['message'];
@@ -64,11 +69,15 @@ class MailController extends BaseController
             $mail->Subject = $subject;
             $mail->Body    = '<p>' . $body . '</p>';
 
+            //sender mailene
             $mail->send();
+
+            //omdirigert brukeren
             return redirect()->to('mailDashboard')->with('msg', 'Meldingen ble sendt');
         } catch (Exception $e) {
             $error = $mail->ErrorInfo;
 
+            //omdirigert brukeren
             return redirect()->to('mailDashboard')->with('msg', 'Meldingen ble ikke sendt. Error: ' . $error);
         }
     }
@@ -76,6 +85,7 @@ class MailController extends BaseController
     //viser liste av medlemmer som man kan sende mail til
     public function sendNewsMailView()
     {
+        //initialiserer modellen
         $model = new \App\Models\memberModel();
 
         $data = [
@@ -84,6 +94,7 @@ class MailController extends BaseController
             'title' => "Alle medlemmer"
         ];
 
+        //printer ut views
         echo view("templates/header");
         echo view('mail/mailMemberList', $data);
         echo view("templates/footer");
@@ -92,6 +103,7 @@ class MailController extends BaseController
     //sender nyhetsbrev
     public function sendNewsMail($to)
     {
+        //starter PHPMailer
         $mail = new PHPMailer(true);
 
         try {
@@ -142,8 +154,6 @@ class MailController extends BaseController
                         width: 15%;
                         height: 15%;
                     }
-            
-            
                 </style>
         
             <main class="main">
@@ -188,11 +198,84 @@ class MailController extends BaseController
             </main>
         ';
 
+            //sender mailene
             $mail->send();
+
+            //omdirigert brukeren
             return redirect()->to('mailDashboard')->with('msg', 'Meldingen ble sendt');
         } catch (Exception $e) {
             $error = $mail->ErrorInfo;
 
+            //omdirigert brukeren
+            return redirect()->to('mailDashboard')->with('msg', 'Meldingen ble ikke sendt. Error: ' . $error);
+        }
+    }
+
+    //viser medlemmer hvor konigentstatusen = ikke aktiv
+    public function contingentStatusView()
+    {
+        //initialiserer modellen
+        $model = new \App\Models\memberModel();
+
+        //data objekt som blir send til viewt
+        $data = [
+            'members' => $model->where('contingent_status', '0')->paginate(10),
+            'pager' => $model->pager,
+            'title' => "Alle medlemmer"
+        ];
+
+        //printer ut views
+        echo view("templates/header");
+        echo view('mail/contingentStatus', $data);
+        echo view("templates/footer");
+    }
+
+    //sender mail til medlemmene med ikke aktiv kontigent status
+    public function contingentStatusMail()
+    {
+        //initialiserer modellen
+        $model = new \App\Models\memberModel();
+
+        //henter ut medlemmene med kontigentstatus = 0
+        $data['members'] = $model->where('contingent_status', '0')->findAll();
+
+        //starter PHPMailer
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host       = 'smtp-mail.outlook.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = getenv('mail');
+            $mail->Password   = getenv('password');
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+
+            //Recipients
+
+            $mail->setFrom(getenv('mail'), 'Neo ungdomsklubb');
+            //legger til medlemmene som har ikke aktiv status som mottaker
+            foreach ($data['members'] as $member) {
+                $mail->addCC($member['email']);
+            }
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Kontigenten' . date('Y');
+            $mail->Body    = '<p>Påminnelse for betling av kontigent</p>';
+
+            //sender mailene
+            $mail->send();
+
+            //omdirigert brukeren
+            return redirect()->to('mailDashboard')->with('msg', 'Meldingen ble sendt');
+        } catch (Exception $e) {
+            $error = $mail->ErrorInfo;
+
+
+            //omdirigert brukeren
             return redirect()->to('mailDashboard')->with('msg', 'Meldingen ble ikke sendt. Error: ' . $error);
         }
     }

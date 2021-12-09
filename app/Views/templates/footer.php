@@ -1,5 +1,5 @@
+<hr class="featurette-divider">
 <div class="container">
-    <hr class="featurette-divider">
     <div class="">
         <footer class="site-footer ">
             <p class="">Gruppe 11</p>
