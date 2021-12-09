@@ -266,6 +266,17 @@ class MemberController extends BaseController
 
                     $data['error'] = "Bilde er for stort";
 
+                    $model = new \App\Models\memInterestModel();
+        
+                    $builder = $model->builder();
+                    $builder->select('*');
+                    $builder->join('interests', 'mem_interests.interest_id=interests.id');
+                    $builder->join('members', 'mem_interests.member_id=members.id');
+                    $builder->where('member_id', $id);
+                    $query = $builder->get();
+                    
+                    $data['interests'] = $query->getResultArray();
+
                     echo view("templates/header", $data);
                     echo view("member/updateMemberView", $data);
                     echo view("templates/footer");
@@ -275,6 +286,17 @@ class MemberController extends BaseController
                 $data['member'] = $model->find($id);
 
                 $data['error'] = "Ikke tillat bilde format";
+
+                $model = new \App\Models\memInterestModel();
+        
+                $builder = $model->builder();
+                $builder->select('*');
+                $builder->join('interests', 'mem_interests.interest_id=interests.id');
+                $builder->join('members', 'mem_interests.member_id=members.id');
+                $builder->where('member_id', $id);
+                $query = $builder->get();
+                
+                $data['interests'] = $query->getResultArray();
 
                 echo view("templates/header", $data);
                 echo view("member/updateMemberView", $data);
@@ -286,6 +308,17 @@ class MemberController extends BaseController
             $data['member'] = $model->find($id);
 
             $data['error'] = "En feil oppsto under opplastningen av bilde";
+
+            $model = new \App\Models\memInterestModel();
+        
+            $builder = $model->builder();
+            $builder->select('*');
+            $builder->join('interests', 'mem_interests.interest_id=interests.id');
+            $builder->join('members', 'mem_interests.member_id=members.id');
+            $builder->where('member_id', $id);
+            $query = $builder->get();
+            
+            $data['interests'] = $query->getResultArray();
 
             echo view("templates/header", $data);
             echo view("member/updateMemberView", $data);

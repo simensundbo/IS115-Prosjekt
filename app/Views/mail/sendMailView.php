@@ -22,7 +22,7 @@
                                     <?php
                                     foreach ($members as $row) {
                                     ?>
-                                        <option value="<?= $row['email'] ?>"><?= $row['fname'] . " " . $row['lname'] . ". Mail: " . $row['email'] ?></option>
+                                        <option value="<?= $row['email'] ?>"><?= $row['fname'] . " " . $row['lname'] ?></option>
                                     <?php
                                     }
                                     ?>

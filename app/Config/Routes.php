@@ -76,6 +76,9 @@ $routes->get('/sendMailView', "MailController::sendMailView", ['filter' => 'auth
 $routes->post('/sendMail', "MailController::sendMail", ['filter' => 'authGuard']);
 $routes->get('/sendNewsMailView', "MailController::sendNewsMailView", ['filter' => 'authGuard']);
 $routes->get('/sendNewsMail/(:segment)', "MailController::sendNewsMail/$1", ['filter' => 'authGuard']);
+$routes->get('/contingentStatus', "MailController::contingentStatusView", ['filter' => 'authGuard']);
+$routes->get('/contingentStatusMail', "MailController::contingentStatusMail", ['filter' => 'authGuard']);
+
 
 /*
  * --------------------------------------------------------------------
