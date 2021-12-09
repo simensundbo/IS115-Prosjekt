@@ -16,7 +16,8 @@ class UserController extends BaseController
 
 
     //funksjonen som sjekker passord og brukernavn
-    public function login(){
+    public function login()
+    {
         helper(['form']);
 
         //validering at begge feltene er fylt inn
@@ -92,7 +93,9 @@ class UserController extends BaseController
     }
 
     //registrerer en ny bruker
-    public function registrer(){
+    public function registrer()
+    {
+        //laster inn helper klasse
         helper(['form']);
 
         //validering av input felt for registrering av bruker
@@ -146,10 +149,14 @@ class UserController extends BaseController
     }
 
     //logger ut
-    public function logout(){
+    public function logout()
+    {
+        //starter session
         $session = session();
+        //sletter sessioen
         $session->destroy();
 
+        //omdirigeres til startsiden
         return redirect()->to('/');
 
     }

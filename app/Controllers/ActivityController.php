@@ -12,13 +12,13 @@ class ActivityController extends BaseController
 
         //spørring for å hente ut all info om activiteten, samt navn på de ansvarlige (roller)
         $builder = $model->builder();
-        
+
         $builder->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
         $builder->join('members res', 'activities.responsible=res.id');
         $builder->join('members dep', 'activities.deputy_responsible=dep.id');
         $builder->join('members fin', 'activities.finance_responsible=fin.id');
         $query = $builder->get();
-        
+
         //legger uthentet data inn i en matrise
         $data['activities'] =  $query->getResultArray();
 
@@ -74,11 +74,12 @@ class ActivityController extends BaseController
                 'deputy_responsible' => $_POST['nestleder'],
                 'finance_responsible' => $_POST['okonomiansvarlig']
             ];
-
+            //dataen lagres i db
             $model->save($data);
-
+            //omdirigerer brukeren
             return redirect()->to('listActivities');
         } else {
+            //dersom valideringen feiler
             $data['validation'] = $this->validator;
 
             echo view("templates/header");
@@ -90,11 +91,13 @@ class ActivityController extends BaseController
     //viser frem view-et som tar inn data til en ny aktivitet
     public function addActivityView()
     {
-        //db tilkobling
+        //initialiserer modellen
         $model = new \App\Models\memberModel();
 
+        //henter ut alle medlemmene
         $data['members'] = $model->findAll();
 
+        //printer ut views med data
         echo view("templates/header");
         echo view('activity/addActivityView', $data);
         echo view("templates/footer");
@@ -103,38 +106,41 @@ class ActivityController extends BaseController
     //viser kommende aktiviteter (alle aktiviteter fra dagens dato)
     public function comingActivities()
     {
+        //initialiserer modellen
         $model = new \App\Models\activityModel();
 
         //sql spørring helt lik som ListActivities, men som henter ut fra dagens dato
         $builder = $model->builder();
-        
+
         $builder->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
         $builder->join('members res', 'activities.responsible=res.id');
         $builder->join('members dep', 'activities.deputy_responsible=dep.id');
         $builder->join('members fin', 'activities.finance_responsible=fin.id');
         $builder->where('end_date >=', date('Y-m-d'));
         $query = $builder->get();
-        
+
         //lagrer dataen i en matrise
-        $data['activities'] =  $query->getResultArray();
+        $data['activities'] = $query->getResultArray();
 
-
+        //printer ut views med data
         echo view("templates/header", $data);
         echo view("activity/comingActivityView", $data);
         echo view("templates/footer");
     }
 
     //viser aktivitets info siden
-    public function activityInfo($id){
-        
-        //db tilkobling
+    public function activityInfo($id)
+    {
+
+        //initialiserer modellen
         $activityModel = new \App\Models\activityModel();
 
+        //initialiserer modellen
         $memActivityModel = new \App\Models\memActivityModel();
 
-        //sql spørring, lik som listActivities
+        //sql spørring, lik som listActivities. Sql spørringen bygges med builder funksjonen
         $builder1 = $activityModel->builder();
-        
+
         $builder1->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
         $builder1->join('members res', 'activities.responsible=res.id');
         $builder1->join('members dep', 'activities.deputy_responsible=dep.id');
@@ -145,7 +151,7 @@ class ActivityController extends BaseController
         //lagre i matrise
         $data['activity'] =  $query1->getResultArray();
 
-        // sql spørring nr 2, henter medlemmer som er meldt på aktivitet
+        // sql spørring nr 2, henter medlemmer som er meldt på aktivitet. Sql spørringen bygges med builder funksjonen
         $builder2 = $memActivityModel->builder();
 
         $builder2->select('members.fname, members.lname');
@@ -155,45 +161,48 @@ class ActivityController extends BaseController
 
         //lagrer dataen i en matrise
         $data['registered'] =  $query2->getResultArray();
-        
+
         echo view("templates/header");
         echo view("activity/activityInfoView", $data);
         echo view("templates/footer");
     }
 
     //viser frem udate view med data innfylt
-    public function updateView($id){
+    public function updateView($id)
+    {
 
-        //db tilkobling
+        //initialiserer modellen
         $activityModel = new \App\Models\activityModel();
 
+        //initialiserer modellen
         $memberModel = new \App\Models\memberModel();
 
         //sql spørring, lik som listActivities
         $builder1 = $activityModel->builder();
-        
+
         $builder1->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
         $builder1->join('members res', 'activities.responsible=res.id');
         $builder1->join('members dep', 'activities.deputy_responsible=dep.id');
         $builder1->join('members fin', 'activities.finance_responsible=fin.id');
         $builder1->where('activities.id', $id);
         $query1 = $builder1->get();
-        
+
         //lagrer data fra spørring over i en matrise
         $data['activity'] =  $query1->getResultArray();
 
         //lagrer alle medlemmene i en matrise, for drop down meny
         $data['members'] = $memberModel->findAll();
-        
+
         echo view("templates/header");
         echo view("activity/activityInfoUpdateView", $data);
         echo view("templates/footer");
-
     }
 
     //oppdaterer aktiviteten
-    public function update($id){
-        
+    public function update($id)
+    {
+
+        //laster inn helper klasse
         helper(['form']);
 
         //Validering for å sjekke at bruker fyller inn nødvendig felt
@@ -245,25 +254,27 @@ class ActivityController extends BaseController
                 'finance_responsible' => $_POST['finance_responsible']
             ];
 
+            //oppdaterer dataen i databasen
             $model->update($id, $data);
-            echo "her";
+            //omdirigerer brukeren
             return redirect()->to('/activityinfo/' . $id);
         } else {
+            //error handling. Sender brukeren tilbake med nødvendig data. Samme spørringer som tidligere
             $activityModel = new \App\Models\activityModel();
 
             $memberModel = new \App\Models\memberModel();
-    
+
             $builder1 = $activityModel->builder();
-            
+
             $builder1->select('activities.*, res.fname as resFname, res.lname as resLname, dep.fname as depFname, dep.lname as depLname, fin.fname as finFname, fin.lname as finLname');
             $builder1->join('members res', 'activities.responsible=res.id');
             $builder1->join('members dep', 'activities.deputy_responsible=dep.id');
             $builder1->join('members fin', 'activities.finance_responsible=fin.id');
             $builder1->where('activities.id', $id);
             $query1 = $builder1->get();
-            
+
             $data['activity'] =  $query1->getResultArray();
-    
+
             $data['members'] = $memberModel->findAll();
 
             $data['validation'] = $this->validator;
@@ -272,36 +283,40 @@ class ActivityController extends BaseController
             echo view('activity/activityInfoUpdateView', $data);
             echo view("templates/footer");
         }
-
-
     }
 
-    //sjetter en aktivitet
-    public function delete($id){
+    //sletter en aktivitet
+    public function delete($id)
+    {
+        //initialiserer modellen
         $model = new \App\Models\activityModel();
 
         //sjekk at ID finnes i db før den slettes
-        if($model->find($id)){
+        if ($model->find($id)) {
             $model->delete($id);
             return redirect()->to('/comingActivities');
-        }else{
+        } else {
             echo 'En feil skjedde';
         }
-
     }
 
     //viser frem view som lar medlemmer melde seg på aktiviteter
-    public function registerMemberView($id){
+    public function registerMemberView($id)
+    {
 
+        //initialiserer modellen
         $model = new \App\Models\memberModel();
+        //initialiserer modellen
         $memActivityModel = new \App\Models\memActivityModel();
 
+        //henter alle medlemmene og legger dem inn i arrayen $data
         $data = [
             'members' => $model->findAll(),
             'title' => 'aktivitet',
             'id' => $id
         ];
 
+        //bygger spørringen for å hente ut aktiviteter som er knyttet til ett gitt medlem
         $builder = $memActivityModel->builder();
 
         $builder->select('mem_activity.member_id, members.fname, members.lname');
@@ -309,18 +324,20 @@ class ActivityController extends BaseController
         $builder->where('activity_id', $id);
         $query = $builder->get();
 
+        //legger resultatet inn i arrayen
         $data['registered'] =  $query->getResultArray();
 
+        //printer ut views med data
         echo view('templates/header');
         echo view('activity/registerMemberView', $data);
         echo view('templates/footer');
-
     }
 
     //registrerer påmeldingen av et medlem til en git aktivitet
-    public function registerMember($id){
+    public function registerMember($id)
+    {
 
-        //db tilkobling
+        //initialiserer modellen
         $model = new \App\Models\memActivityModel();
 
         //henter medlem fra dropdown og registrerer den mot git aktivitet
@@ -330,11 +347,11 @@ class ActivityController extends BaseController
         ];
 
         //lagring av data, feilmelding ved feil
-        if($model->save($data)){
+        if ($model->save($data)) {
             return redirect()->to('/registerMemberView/' . $id);
-        }else{
+        } else {
             $model = new \App\Models\activityModel();
-            
+
             $data = [
                 'activity' => $model->findAll(),
                 'title' => 'Activiteter',
@@ -351,8 +368,9 @@ class ActivityController extends BaseController
     //fjerner medlemmer fra en aktivitet
     public function deleteActivityMember($memberId, $activityId)
     {
+        //initialiserer modellen
         $model = new \App\Models\memActivityModel();
-
+        //finner medlemmet som er knyttet til aktiviteten og fjerner det
         $model->where('member_id', $memberId)->where('activity_id', $activityId)->delete();
 
         return redirect()->to('/registerMemberView/' . $activityId);

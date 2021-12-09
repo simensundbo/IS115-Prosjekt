@@ -55,6 +55,7 @@ class MailController extends BaseController
             $mail->isSMTP();
             $mail->Host       = 'smtp-mail.outlook.com';
             $mail->SMTPAuth   = true;
+            $mail->CharSet = 'UTF-8';
             $mail->Username   = getenv('mail');
             $mail->Password   = getenv('password');
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
@@ -248,6 +249,7 @@ class MailController extends BaseController
             $mail->isSMTP();
             $mail->Host       = 'smtp-mail.outlook.com';
             $mail->SMTPAuth   = true;
+            $mail->CharSet = 'UTF-8';
             $mail->Username   = getenv('mail');
             $mail->Password   = getenv('password');
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;

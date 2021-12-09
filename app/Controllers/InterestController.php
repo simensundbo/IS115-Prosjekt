@@ -14,7 +14,7 @@ class InterestController extends BaseController
         //initialiserer modellen
         $model = new \App\Models\interestModel();
 
-        //data objekt som blir send til view
+        //data array som blir send til view
         $data = [
             'interest' => $model->findAll(),
             'title' => 'Interesser',
@@ -25,27 +25,28 @@ class InterestController extends BaseController
         echo view('templates/header', $data);
         echo view('interest/addInterestView', $data);
         echo view('templates/footer');
-
     }
 
     //legger til en interesse
-    public function addInterest($id){
+    public function addInterest($id)
+    {
 
         //initialiserer modellen
         $model = new \App\Models\memInterestModel();
 
-        //data objekt som blir send til view
+        //data array som blir send til view
         $data = [
             'interest_id' => $_POST['interest'],
             'member_id' => $id
         ];
 
         //Lagrer interesse i db, feilmelding ved feil
-        if($model->save($data)){
+        if ($model->save($data)) {
             return redirect()->to('/memberProfile/' . $id);
-        }else{
+        } else {
+            //omdirigerer brukeren med henter fram data som trengs for å vise view-et
             $model = new \App\Models\interestModel();
-            
+
             $data = [
                 'interest' => $model->findAll(),
                 'title' => 'Interesser',
@@ -66,30 +67,30 @@ class InterestController extends BaseController
         //initialiserer modellen
         $model = new \App\Models\interestModel();
 
-        //data objekt som blir send til viewt
+        //data array som blir send til viewt
         $data['interests'] = $model->findAll();
 
         //printer ut views
         echo view("templates/header");
         echo view('interest/filterInterestView', $data);
         echo view("templates/footer");
-        
     }
 
-    ////viser frem filtere uten ajax
-    public function filterInterests(){
-
-        $memberId = $_POST['medlem']; 
+    //viser frem filtere uten ajax - Denne brukes ikke
+    public function filterInterests()
+    {
+        //henter data fra view
+        $memberId = $_POST['medlem'];
 
         //initialiserer modellen
         $model = new \App\Models\interestModel();
+        //initialiserer modellen
+        $memInterestModel = new \App\Models\memInterestModel();
 
-        $memInterestModel= new \App\Models\memInterestModel();
-
-        //data objekt som blir send til view
+        //data array som blir send til view
         $data['interests'] = $model->findAll();
 
-        //sql spørring for å hente ut navn på alle med git interesse
+        //sql spørring bygges for å hente ut navn på alle med git interesse
         $builder = $memInterestModel->builder();
 
         $builder->select('interests.name, members.*');
@@ -98,7 +99,7 @@ class InterestController extends BaseController
         $builder->where('interests.id', $memberId);
         $query = $builder->get();
 
-        //data objekt som blir send til view
+        //data array som blir send til view
         $data['medlem_int'] =  $query->getResultArray();
 
         //printer ut views
@@ -108,17 +109,19 @@ class InterestController extends BaseController
     }
 
     //viser frem filtere asynkront ved ajax
-    public function filterInterestsAsync($id){
+    public function filterInterestsAsync($id)
+    {
 
         //initialiserer modellen
         $model = new \App\Models\interestModel();
 
-        $memInterestModel= new \App\Models\memInterestModel();
+        //initialiserer modellen
+        $memInterestModel = new \App\Models\memInterestModel();
 
-        //data objekt som blir send til view
+        //data array som blir send til view
         $data['interests'] = $model->findAll();
 
-        //sql spørring for å hente ut navn på alle med git interesse
+        //sql spørring bygges for å hente ut navn på alle med git interesse
         $builder = $memInterestModel->builder();
 
         $builder->select('interests.name, members.*');
@@ -127,21 +130,20 @@ class InterestController extends BaseController
         $builder->where('interests.id', $id);
         $query = $builder->get();
 
-        print_r(json_encode( $query->getResultArray()));
+        //printer ut dataen som et resultat av funksjonen
+        print_r(json_encode($query->getResultArray()));
     }
 
     //sletter en som er koblet til ett medlem
-    public function deleteInterests($memberId, $interestId){
+    public function deleteInterests($memberId, $interestId)
+    {
 
         //initialiserer modellen
-        $model= new \App\Models\memInterestModel();
+        $model = new \App\Models\memInterestModel();
 
         //sql spørring for å slette interesse fra medlem
         $model->where('member_id', $memberId)->where('interest_id', $interestId)->delete();
-        
-        return redirect()->to('/updateView/' . $memberId);
-    
-    }
 
-    
+        return redirect()->to('/updateView/' . $memberId);
+    }
 }
