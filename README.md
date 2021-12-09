@@ -5,8 +5,9 @@
     Dependency er spesifisert i composer.json og composer.lock filene
 
 ## Database & Mail oppsett
-    Naviger deg til app/Config/Database.php
-    Fyll inn verdiene til din database i $default arrayen
+    Naviger deg til app/Config/Database.php.
+    Fyll inn verdiene til din database i $default arrayen.
+    Databasen til prosjektet finner man i 'app/Database' mappen
 
     For å konfigurere PHPMailer må man lage en .env fil hvor man spesifiserer innloggingen til mailen man vil bruke.
     Kopier env_example og gi den navnet '.env'
