@@ -8,6 +8,7 @@ class UserController extends BaseController
     //viser innloggings view et
     public function loginView()
     {
+        //printer ut views
         echo view("templates/header");
         echo view('user/loginView');
         echo view("templates/footer");
@@ -18,6 +19,7 @@ class UserController extends BaseController
     public function login(){
         helper(['form']);
 
+        //validering at begge feltene er fylt inn
         $validation = $this->validate([
             'username'          => 'required',
             'password'          => 'required'
@@ -32,10 +34,13 @@ class UserController extends BaseController
         ]
         ); 
 
-
+        //true, begge felt fylt inn
         if($validation){
+            
+            //initialiserer modellen
             $model = new \App\Models\UserModel();
 
+            //henter data fylt inn i formet
             $username = $_POST["username"];
             $password = $_POST["password"];
 
@@ -44,7 +49,9 @@ class UserController extends BaseController
             if($data){
                 $hashPwd = $data["password"];
 
+                //verifisering av passord mot hashet passord i db, true
                 if(password_verify($password, $hashPwd)){
+                    //lager en session
                     $session_data = [
                         "loggedon" => true,
                         "id" => $data["id"],
@@ -52,10 +59,12 @@ class UserController extends BaseController
                     ];
                     $session = session();
                     $session->set($session_data);
+                    //sender bruker videre til dashboard
                     return redirect()->to('dashboard');
 
                 }else{
                     $data['validation'] = $this->validator;
+                    //printer ut views
                     echo view("templates/header");
                     echo view("user/loginView", $data);
                     echo view("templates/footer");
@@ -66,6 +75,7 @@ class UserController extends BaseController
 
         }else{
             $data['validation'] = $this->validator;
+            //printer ut views
             echo view("templates/header");
             echo view("user/loginView", $data);
             echo view("templates/footer");
@@ -85,6 +95,7 @@ class UserController extends BaseController
     public function registrer(){
         helper(['form']);
 
+        //validering av input felt for registrering av bruker
         $validation = $this->validate([
             'username'          => 'required|min_length[2]|max_length[50]|is_unique[users.username]',
             'password'          => 'required|min_length[4]|max_length[50]',
@@ -110,18 +121,23 @@ class UserController extends BaseController
         ); 
         
         if($validation){
+
+            //initialiserer modellen
             $model = new \App\Models\UserModel();
 
+            //data objekt som blir send til view
             $data = [
                 'username' => $_POST['username'],
+                //lagrer passord som hashed i databasen
                 'password' => password_hash($_POST['password'], PASSWORD_DEFAULT) 
             ];
-
+            //lagrer data i db
             $model->save($data);
 
             return redirect()->to('/login');
         }else{
             $data['validation'] = $this->validator;
+            //printer ut views
             echo view("templates/header");
             echo view('user/registerView', $data);
             echo view("templates/footer");

@@ -217,7 +217,7 @@ class MailController extends BaseController
         //initialiserer modellen
         $model = new \App\Models\memberModel();
 
-        //data objekt som blir send til viewt
+        //data objekt som blir send til view
         $data = [
             'members' => $model->where('contingent_status', '0')->paginate(10),
             'pager' => $model->pager,
