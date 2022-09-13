@@ -1,5 +1,5 @@
 ## Oppstart av WebAppen
-    Instaler Composer A Dependency Manager for PHP på maskinen. Link til composer: https://getcomposer.org/
+    Installer "Composer Dependency Manager" for PHP på maskinen. Link til composer: https://getcomposer.org/
     Kjør composer update i komandolinjen.
     Man vil da få en mappe som heter vendor hvor alle Dependency til prosjektet ligger
     Dependency er spesifisert i composer.json og composer.lock filene
